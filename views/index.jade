@@ -1,5 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .roulette-header
+    img(src='images/r_logo.png', width='300px')
+  .container
+    .login
+      .login-content
+        br
+        br
+        form.form(name='formLogIn')
+          br
+          input.username(type='text', name='username', placeholder='Username')
+          br
+          input.password(type='password', name='password', placeholder='Password')
+          br
+          input(type='button', value='Log in', onclick='checkCookies()')
+          br
+          a(href='signup.html')
+            input(type='button', value='Sign up')
+          br
+          p.forgotPassword
+            | Forgot password?
+            a.forgotPassword(href='forgotpassword.html') Click here
+          br

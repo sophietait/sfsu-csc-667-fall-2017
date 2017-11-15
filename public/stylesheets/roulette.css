@@ -1,0 +1,101 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+}
+
+.roulette-header{
+  background-color: #08682e;
+  padding:0;
+  margin:0;
+}
+
+.container {
+    /*background-image: url("images/wallpaper.jpg");*/
+    background-image: url("https://gamblinglawsisrael.files.wordpress.com/2015/04/shutterstock_126023555.jpg");
+    background-size: cover;
+    height:700px;
+}
+
+.login-content{
+  /*position: fixed;*/
+  position:absolute;
+  margin-left: 30%;
+  margin-top: 50px;
+  width:40%;
+  height: 400px;
+  background-color: black;
+  opacity: 0.9;
+}
+
+.signup-content{
+  /*position: fixed;*/
+  position:absolute;
+  margin-left: 30%;
+  margin-top: 50px;
+  width:40%;
+  height: 450px;
+  background-color: black;
+  opacity: 0.9;
+}
+
+.forgot-password-content{
+  position:absolute;
+  margin-left: 30%;
+  margin-top: 50px;
+  width:40%;
+  height: 250px;
+  background-color: black;
+  opacity: 0.9;
+}
+
+.username {
+    margin: 10px;
+    width: 230px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 10px 12px 10px;
+}
+
+.password {
+    margin: 10px;
+    width: 230px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 10px 12px 10px;
+}
+
+input[type=button] {
+    margin: 10px;
+    width: 160px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    background-color: #08682e;
+    padding: 10px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.form{
+  text-align: center;
+}
+
+.forgotPassword{
+  color:white;
+  font-family: helvetica;
+}
