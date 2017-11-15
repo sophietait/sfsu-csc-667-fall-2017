@@ -1,0 +1,24 @@
+extends layout
+
+block content
+.roulette-header
+    img(src='images/r_logo.png', width='300px')
+  .container
+    .signup-content
+      br
+      br
+      form.form(name='formSignIn')
+        input.username(type='text', name='name', placeholder='Name')
+        br
+        input.username(type='text', name='username', placeholder='Username')
+        br
+        input.username(type='email', name='email', placeholder='Email')
+        br
+        input.password(type='password', name='password', placeholder='Password')
+        br
+        br
+        p(style='color:white; font-family:helvetica')
+          input#policies(type='checkbox', name='terms', value='terms', required='required')
+          |I have read and agree to terms of use, privacy policy and use of cookies*
+        input(type='button', value='Sign in', onclick='setCookies(this.form)')
+        br
