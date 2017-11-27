@@ -14,6 +14,8 @@ var users = require('./routes/users');
 var tests = require('./routes/tests');
 var signup = require('./routes/signup');
 var forgotpassword = require('./routes/forgotpassword');
+var gameroom = require('./routes/gameroom');
+var rules = require('./routes/rules');
 
 var app = express();
 
@@ -37,6 +39,9 @@ app.use('/users', users);
 app.use('/tests', tests);
 app.use('/signup', signup);
 app.use('/forgotpassword', forgotpassword);
+app.use('/gameroom', gameroom);
+app.use('/rules', rules);
+
 
 
 // catch 404 and forward to error handler

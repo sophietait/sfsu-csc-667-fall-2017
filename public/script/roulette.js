@@ -1,3 +1,13 @@
+function spinning(){
+  document.getElementsByClassName("image-roulette")[0].style.display="none";
+  document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
+}
+
+function no_spinning(){
+  document.getElementsByClassName("image-roulette-spin")[0].style.display="none";
+  document.getElementsByClassName("image-roulette")[0].style.display="inline-block";
+}
+
 function sendForgotPassword() {
   alert("The email has been sent correctly. Please check your email");
 }
