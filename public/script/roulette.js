@@ -1,3 +1,13 @@
+function openchat(){
+  document.getElementById("closed-chat").style.display="none";
+  document.getElementById("live-chat").style.display="block";
+}
+
+function closechat(){
+  document.getElementById("closed-chat").style.display="block";
+  document.getElementById("live-chat").style.display="none";
+}
+
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";

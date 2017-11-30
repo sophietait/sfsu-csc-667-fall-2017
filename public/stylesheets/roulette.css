@@ -122,12 +122,12 @@ input[type=button] {
 }
 
 .image-roulette {
-  width: 33%;
+  width: 26%;
   display:inline-block;
 }
 
 .image-roulette-spin {
-  width: 33%;
+  width: 26%;
   display:none;
   -webkit-animation:spin 1s linear 3;
 }
