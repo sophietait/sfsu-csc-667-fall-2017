@@ -1,3 +1,10 @@
+function addCredit(form){
+    var currentCredit = document.getElementById("credit");
+    var addedCredit = form.addedCredit.value;
+    currentCredit += addedCredit;
+    alert(currentCredit);   
+}
+
 function openchat(){
   document.getElementById("closed-chat").style.display="none";
   document.getElementById("live-chat").style.display="block";
@@ -68,8 +75,7 @@ function validation() {
     var userName = document.forms["formSignIn"]["username"].value;
     var password = document.forms["formSignIn"]["password"].value;
     var password_length = document.forms["formSignIn"]["password"].length;
-    var email = document.forms["formSignIn"]["email"].value;
-
+   
     if (document.getElementById("policies").checked == false) {
         alert("You have to accept the terms of use, privacy and cookies");
         return result;

@@ -14,6 +14,8 @@ var users = require('./routes/users');
 var tests = require('./routes/tests');
 var signup = require('./routes/signup');
 var forgotpassword = require('./routes/forgotpassword');
+var gamelobby = require('./routes/gamelobby');
+var addcredit = require('./routes/addcredit');
 var gameroom = require('./routes/gameroom');
 var rules = require('./routes/rules');
 
@@ -39,6 +41,8 @@ app.use('/users', users);
 app.use('/tests', tests);
 app.use('/signup', signup);
 app.use('/forgotpassword', forgotpassword);
+app.use('/gamelobby', gamelobby);
+app.use('/addcredit', addcredit);
 app.use('/gameroom', gameroom);
 app.use('/rules', rules);
 

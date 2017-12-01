@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .roulette-header
+    img(src='images/r_logo.png', width='300px')
+  .container
+    .login
+      .login-content
+        br
+        br
+        form.form(name='addCredit')
+          br
+          input.username(type='text', name='addedcredit', placeholder='Enter amount to add to credit')
+          br
+          a(href='')
+            input(type='button', value='Enter', onclick='addCredit()')
+          br
+          a(href='gamelobby')
+            input(type='button', value='Back')
+          
+          br
+          br
