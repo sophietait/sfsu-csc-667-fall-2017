@@ -4,6 +4,10 @@ body {
     background-color: black;
 }
 
+#logo{
+    display: inline-block;
+}
+
 .roulette-header{
   background-color: #08682e;
   padding:0;

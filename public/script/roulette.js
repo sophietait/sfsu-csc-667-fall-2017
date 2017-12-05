@@ -18,6 +18,7 @@ function closechat(){
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
+  getRandomNumber();
 }
 
 function no_spinning(){
@@ -134,4 +135,9 @@ function getBettingQuantity(){
   modal.style.display = "none";
   //alert(quantity);
   document.getElementById('amountbet').value="";
+}
+
+function getRandomNumber(){
+    var winningNumber=Math.floor(Math.random() * 36);
+    alert("Winning number is: "+winningNumber);
 }
