@@ -2,7 +2,7 @@ function addCredit(form){
     var currentCredit = document.getElementById("credit");
     var addedCredit = form.addedCredit.value;
     currentCredit += addedCredit;
-    alert(currentCredit);   
+    alert(currentCredit);
 }
 
 function openchat(){
@@ -75,7 +75,7 @@ function validation() {
     var userName = document.forms["formSignIn"]["username"].value;
     var password = document.forms["formSignIn"]["password"].value;
     var password_length = document.forms["formSignIn"]["password"].length;
-   
+
     if (document.getElementById("policies").checked == false) {
         alert("You have to accept the terms of use, privacy and cookies");
         return result;
@@ -116,4 +116,22 @@ function validation() {
     }
     result = true;
     return result;
+}
+
+function openBettingModal(numberToBet){
+    var modal = document.getElementById('myModal');
+    modal.style.display = "block";
+    //alert(numberToBet);
+}
+
+function closeBettingModal(){
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+}
+
+function getBettingQuantity(){
+  quantity = document.getElementById('amountbet').value;
+  modal.style.display = "none";
+  //alert(quantity);
+  document.getElementById('amountbet').value="";
 }
