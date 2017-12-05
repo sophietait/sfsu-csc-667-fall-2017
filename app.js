@@ -46,8 +46,6 @@ app.use('/addcredit', addcredit);
 app.use('/gameroom', gameroom);
 app.use('/rules', rules);
 
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
    var err = new Error('Not Found');
