@@ -9,27 +9,18 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Roulette' });
 });
 
-passport.use(new LocalStrategy(function(username, password, done) {
-  User.findOne({ username: username }, function(err, user) {
-    if (err) { return done(err); }
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
-    }
-    if (!user.validPassword(password)) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    return done(null, user);
-  });
-}
-));
-
-
-router.post('/',passport.authenticate('local-index', { successRedirect: '/gamelobby',
+app.post('/',passport.authenticate('local', { successRedirect: '/gamelobby',
                                  failureRedirect: '/index',
-                                 failureFlash: true }),
-                                 function(req, res, next) {
-                                  res.render('index', { title: 'Roulette' });
-                                }                                 
+                                 failureFlash: true })                                                
 );
 
+/*
+router.post('/',passport.authenticate('local-index', { successRedirect: '/gamelobby',
+failureRedirect: '/index',
+failureFlash: true }),
+function(req, res, next) {
+ res.render('index', { title: 'Roulette' });
+}                                 
+);
+*/
 module.exports = router;
