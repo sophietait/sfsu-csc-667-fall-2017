@@ -3,47 +3,23 @@ extends layout
 block content
   .roulette-header
     img(src='images/r_logo.png', width='300px')
-<<<<<<< HEAD
   .background-default
     .login-content
       br
       br
+      br
       form.form(name='formLogIn')
-=======
-  .container
-      .login-content
->>>>>>> 78cc80200744b185b58b3270571d4c7b77204391
-        br
         input.username(type='text', name='username', placeholder='Username')
         br
         input.password(type='password', name='password', placeholder='Password')
         br
         a(href='gamelobby')
-          input(type='button', value='Log in', onclick='checkCookies()')
+            input(type='button', value='Log in', onclick='checkCookies()')
         br
         a(href='signup')
-          input(type='button', value='Sign up')
+            input(type='button', value='Sign up')
         br
         p.forgotPassword
-          | Forgot password?
-          a.forgotPassword(href='forgotpassword') Click here
-        br
-<<<<<<< HEAD
-=======
-        form.form(name='formLogIn', method='post' action='./gamelob')
-          br
-          input.username(type='text', name='username', placeholder='Username')
-          br
-          input.password(type='password', name='password', placeholder='Password')
-          br
-          a(href='gamelobby')
-            input(type='submit', value='Log in')
-          br
-          a(href='signup')
-            input(type='button', value='Sign up')
-          br
-          p.forgotPassword
             | Forgot password?
             a.forgotPassword(href='forgotpassword') Click here
-          br
->>>>>>> 78cc80200744b185b58b3270571d4c7b77204391
+        
