@@ -7,7 +7,7 @@ block content
     .signup-content
       br
       br
-      form.form(name='formSignIn',method='post')
+      form.form(name='formSignIn', method='post', action='./saveSignUpData')
         input.username(type='text', name='name', placeholder='Name')
         br
         input.username(type='text', name='username', placeholder='Username')
@@ -20,5 +20,5 @@ block content
         p(style='color:white; font-family:helvetica')
           input#policies(type='checkbox', name='terms', value='terms', required='required')
           |I have read and agree to terms of use, privacy policy and use of cookies*
-        input(type='button', value='Sign up', onclick='setCookies(this.form)')
+        input(type='button', value='Sign up', onclick='')
         br
