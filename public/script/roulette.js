@@ -106,7 +106,7 @@ function validation() {
         return result;
     }
 
-    if (!email.match(/^[a-zA-Z0-9.!#$%&’*+/=?_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.]+$/)) {
+    if (!email.match(/^[a-zA-Z0-9.!#$%&’*+/=?_`{|}~-]+\@[a-zA-Z0-9]+\.[a-zA-Z0-9.]+$/)) {
         alert("Not a valid e-mail address");
         return result;
     }
