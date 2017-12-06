@@ -3,25 +3,24 @@ extends layout
 block content
   .roulette-header
     img(src='images/r_logo.png', width='300px')
-  .container
-    .login
-      .login-content
+  .background-default  
+    .default-content
+      br
+      .form
         br
-        form.form(name='formLogIn')
-          br
-          a(href='gameroom')
-            input(type='button', value='Create Game')
-          br
-          a(href='gameroom')
-            input(type='button', value='Join Game')
-          br
-          a(href='addcredit')
-            input(type='button', value='Add Credit')
-          br
-          a(href='rules')
-            input(type='button', value='Rules')
-          br
-          a(href='index')
-            input(type='button', value='Logout')
-          br
-          br
+        a(href='gameroom')
+          input(type='button', value='Create Game')
+        br
+        a(href='gameroom')
+          input(type='button', value='Join Game')
+        br
+        a(href='addcredit')
+          input(type='button', value='Add Credit')
+        br
+        a(href='rules')
+          input(type='button', value='Rules')
+        br
+        a(href='index')
+          input(type='button', value='Logout')
+        br
+        br

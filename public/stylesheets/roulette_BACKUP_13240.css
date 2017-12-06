@@ -4,6 +4,9 @@ body {
     background-color: black;
 }
 
+<<<<<<< HEAD
+.roulette-header{ 
+=======
 #player-timer{
   margin-top: 10px;
   color:white;
@@ -12,30 +15,23 @@ body {
 }
 
 .roulette-header{
+>>>>>>> 78cc80200744b185b58b3270571d4c7b77204391
   background-color: #08682e;
 }
 
+<<<<<<< HEAD
 .background-default{
+=======
+.roulette-second-header{
+  text-align: right;
+}
+
+.container {
+>>>>>>> 78cc80200744b185b58b3270571d4c7b77204391
     /*background-image: url("images/wallpaper.jpg");*/
     background-image: url("https://gamblinglawsisrael.files.wordpress.com/2015/04/shutterstock_126023555.jpg");
     background-size: cover;
     height:700px;
-}
-
-.background-rules{
-  margin-left: 20%;
-  width: 60%;
-  color:white;
-  font-size: 14px;
-  font-family: arial;
-  text-align: justify;
-}
-
-
-.background-gameroom{
-  margin-top: 80px;
-  margin-bottom: 120px;
-
 }
 
 .default-content{
@@ -140,6 +136,22 @@ input[type=button], input[type=submit] {
 .forgotPassword{
   color:white;
   font-family: helvetica;
+}
+
+.background-rules{
+  margin-left: 20%;
+  width: 60%;
+  color:white;
+  font-size: 14px;
+  font-family: arial;
+  text-align: justify;
+}
+
+
+.background-gameroom{
+  margin-top: 80px;
+  margin-bottom: 120px;
+
 }
 
 .image-table {
