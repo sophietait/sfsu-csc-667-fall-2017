@@ -3,18 +3,20 @@ extends layout
 block content
   .roulette-header
     img(src='images/r_logo.png', width='300px')
-  .background-default
-    .add-credit-content
-      br
-      form.form(name='addCredit')
+  .container
+    .login
+      .login-content
         br
-        input.username(type='text', name='addedcredit', placeholder='Enter amount to add to credit')
         br
-        a(href='')
-          input(type='button', value='Enter', onclick='addCredit()')
-        br
-        a(href='gamelobby')
-          input(type='button', value='Back')
+        form.form(name='addCredit')
+          br
+          input.username(type='text', name='addedcredit', placeholder='Enter amount to add to credit')
+          br
+          a(href='')
+            input(type='button', value='Enter', onclick='addCredit()')
+          br
+          a(href='gamelobby')
+            input(type='button', value='Back')
           
-        br
-        br
+          br
+          br
