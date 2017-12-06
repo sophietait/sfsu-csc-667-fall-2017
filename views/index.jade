@@ -7,14 +7,14 @@ block content
       .login-content
         br
         br
-        form.form(name='formLogIn', method='post' action='./logInData')
+        form.form(name='formLogIn', method='post' action='./gamelob')
           br
           input.username(type='text', name='username', placeholder='Username')
           br
           input.password(type='password', name='password', placeholder='Password')
           br
           a(href='gamelobby')
-            input(type='button', value='Log in', onclick='checkCookies()')
+            input(type='submit', value='Log in')
           br
           a(href='signup')
             input(type='button', value='Sign up')

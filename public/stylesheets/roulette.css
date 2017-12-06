@@ -86,7 +86,7 @@ body {
     padding: 12px 10px 12px 10px;
 }
 
-input[type=button] {
+input[type=button], input[type=submit] {
     margin: 10px;
     width: 160px;
     box-sizing: border-box;

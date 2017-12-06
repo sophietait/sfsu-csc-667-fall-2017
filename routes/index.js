@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Roulette' });
 });
 
-router.get('/logInData', function(req, res, next) {
+router.get('/gamelob', function(req, res, next) {
   //db.any(`SELECT ("username", "password") FROM player`)
   db.any(`SELECT username, password FROM player`)
 
