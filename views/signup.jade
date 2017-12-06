@@ -3,7 +3,7 @@ extends layout
 block content
   .roulette-header
     img(src='images/r_logo.png', width='300px')
-  .container
+  .background-default
     .signup-content
       br
       br
@@ -21,4 +21,7 @@ block content
           input#policies(type='checkbox', name='terms', value='terms', required='required')
           |I have read and agree to terms of use, privacy policy and use of cookies*
         input(type='button', value='Sign up', onclick='setCookies(this.form)')
+        br
+        a(href='index')
+            input(type='button', value='Back')
         br

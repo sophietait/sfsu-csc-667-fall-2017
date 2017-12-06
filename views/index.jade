@@ -3,24 +3,23 @@ extends layout
 block content
   .roulette-header
     img(src='images/r_logo.png', width='300px')
-  .container
-    .login
-      .login-content
+  .background-default
+    .login-content
+      br
+      br
+      form.form(name='formLogIn')
         br
+        input.username(type='text', name='username', placeholder='Username')
         br
-        form.form(name='formLogIn')
-          br
-          input.username(type='text', name='username', placeholder='Username')
-          br
-          input.password(type='password', name='password', placeholder='Password')
-          br
-          a(href='gamelobby')
-            input(type='button', value='Log in', onclick='checkCookies()')
-          br
-          a(href='signup')
-            input(type='button', value='Sign up')
-          br
-          p.forgotPassword
-            | Forgot password?
-            a.forgotPassword(href='forgotpassword') Click here
-          br
+        input.password(type='password', name='password', placeholder='Password')
+        br
+        a(href='gamelobby')
+          input(type='button', value='Log in', onclick='checkCookies()')
+        br
+        a(href='signup')
+          input(type='button', value='Sign up')
+        br
+        p.forgotPassword
+          | Forgot password?
+          a.forgotPassword(href='forgotpassword') Click here
+        br
