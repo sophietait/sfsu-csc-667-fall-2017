@@ -2,7 +2,7 @@ function addCredit(form){
     var currentCredit = document.getElementById("credit");
     var addedCredit = form.addedCredit.value;
     currentCredit += addedCredit;
-    alert(currentCredit);   
+    alert(currentCredit);
 }
 
 function openchat(){
@@ -18,6 +18,7 @@ function closechat(){
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
+  getRandomNumber();
 }
 
 function no_spinning(){
@@ -75,7 +76,7 @@ function validation() {
     var userName = document.forms["formSignIn"]["username"].value;
     var password = document.forms["formSignIn"]["password"].value;
     var password_length = document.forms["formSignIn"]["password"].length;
-   
+
     if (document.getElementById("policies").checked == false) {
         alert("You have to accept the terms of use, privacy and cookies");
         return result;
@@ -96,16 +97,16 @@ function validation() {
         alert("Password must be filled out");
         return result;
     }
-    if (password_length > 8) {
-        alert("Password must be smaller than 8 characters and larger than 2, including one letter and one number");
+    if (password_length > 10) {
+        alert("Password must be smaller than 10 characters and larger than 2, including one letter and one number");
         return result;
     }
     if (!password.match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/)) {
-        alert("Password must be smaller than 8 characters and larger than 2, including one letter and one number");
+        alert("Password must be smaller than 10 characters and larger than 2, including one letter and one number");
         return result;
     }
 
-    if (!email.match(/^[a-zA-Z0-9.!#$%&’*+/=?_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.]+$/)) {
+    if (!email.match(/^[a-zA-Z0-9.!#$%&’*+/=?_`{|}~-]+\@[a-zA-Z0-9]+\.[a-zA-Z0-9.]+$/)) {
         alert("Not a valid e-mail address");
         return result;
     }
@@ -116,4 +117,27 @@ function validation() {
     }
     result = true;
     return result;
+}
+
+function openBettingModal(numberToBet){
+    var modal = document.getElementById('myModal');
+    modal.style.display = "block";
+    //alert(numberToBet);
+}
+
+function closeBettingModal(){
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+}
+
+function getBettingQuantity(){
+  quantity = document.getElementById('amountbet').value;
+  modal.style.display = "none";
+  //alert(quantity);
+  document.getElementById('amountbet').value="";
+}
+
+function getRandomNumber(){
+    var winningNumber=Math.floor(Math.random() * 36);
+    alert("Winning number is: "+winningNumber);
 }

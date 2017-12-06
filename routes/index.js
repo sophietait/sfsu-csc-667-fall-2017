@@ -6,4 +6,16 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Roulette' });
 });
 
+router.get('/gamelob', function(req, res, next) {
+  //db.any(`SELECT ("username", "password") FROM player`)
+  db.any(`SELECT username, password FROM player`)
+
+//.then( _ => db.any(`SELECT * FROM test_table`) )
+.then( results => res.json( results ) )
+.catch( error => {
+console.log( error )
+res.json({ error })
+});
+});
+
 module.exports = router;

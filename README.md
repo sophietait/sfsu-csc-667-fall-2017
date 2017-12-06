@@ -1,4 +1,4 @@
-"# term-project-laturkar-litwin-echevarria-pise-tait" 
+"# term-project-laturkar-litwin-echevarria-pise-tait"
 
 12/1/2017
 FRONT END
@@ -7,10 +7,11 @@ current credit amount dispalyed (gamelobby & gameroom)
 keep track of # of player in game
 keep track of # of players who finished betting
 individual timer for betting
-window to enter bet amount
-exit button for gameroom
+window to enter bet amount (DONE)
+exit button for gameroom (DONE)
 change login to connect to database
-random number generator
+random number generator (DONE)
+    Math.floor(Math.random() * 36);
 determining if user has won
 update credit after win/loss
 

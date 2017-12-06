@@ -4,9 +4,6 @@ body {
     background-color: black;
 }
 
-<<<<<<< HEAD
-.roulette-header{ 
-=======
 #player-timer{
   margin-top: 10px;
   color:white;
@@ -15,26 +12,23 @@ body {
 }
 
 .roulette-header{
->>>>>>> 78cc80200744b185b58b3270571d4c7b77204391
   background-color: #08682e;
+  padding:0;
+  margin:0;
 }
 
-<<<<<<< HEAD
-.background-default{
-=======
 .roulette-second-header{
   text-align: right;
 }
 
 .container {
->>>>>>> 78cc80200744b185b58b3270571d4c7b77204391
     /*background-image: url("images/wallpaper.jpg");*/
     background-image: url("https://gamblinglawsisrael.files.wordpress.com/2015/04/shutterstock_126023555.jpg");
     background-size: cover;
     height:700px;
 }
 
-.default-content{
+.login-content{
   /*position: fixed;*/
   position:absolute;
   margin-left: 30%;
@@ -45,24 +39,13 @@ body {
   opacity: 0.9;
 }
 
-.login-content{
-  /*position: fixed;*/
-  position:absolute;
-  margin-left: 30%;
-  margin-top: 50px;
-  width:40%;
-  height: 420px;
-  background-color: black;
-  opacity: 0.9;
-}
-
 .signup-content{
   /*position: fixed;*/
   position:absolute;
   margin-left: 30%;
   margin-top: 50px;
   width:40%;
-  height: 540px;
+  height: 450px;
   background-color: black;
   opacity: 0.9;
 }
@@ -72,17 +55,7 @@ body {
   margin-left: 30%;
   margin-top: 50px;
   width:40%;
-  height: 280px;
-  background-color: black;
-  opacity: 0.9;
-}
-
-.add-credit-content{
-  position:absolute;
-  margin-left: 30%;
-  margin-top: 50px;
-  width:40%;
-  height: 270px;
+  height: 250px;
   background-color: black;
   opacity: 0.9;
 }
