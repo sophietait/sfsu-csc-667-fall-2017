@@ -97,12 +97,12 @@ function validation() {
         alert("Password must be filled out");
         return result;
     }
-    if (password_length > 8) {
-        alert("Password must be smaller than 8 characters and larger than 2, including one letter and one number");
+    if (password_length > 10) {
+        alert("Password must be smaller than 10 characters and larger than 2, including one letter and one number");
         return result;
     }
     if (!password.match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/)) {
-        alert("Password must be smaller than 8 characters and larger than 2, including one letter and one number");
+        alert("Password must be smaller than 10 characters and larger than 2, including one letter and one number");
         return result;
     }
 
