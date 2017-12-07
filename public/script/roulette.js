@@ -33,7 +33,7 @@ function sendForgotPassword() {
 function openBettingModal(numberToBet){
     var modal = document.getElementById('myModal');
     modal.style.display = "block";
-    //alert(numberToBet);
+    alert(numberToBet);
 }
 
 function closeBettingModal(){
@@ -44,7 +44,7 @@ function closeBettingModal(){
 function getBettingQuantity(){
   quantity = document.getElementById('amountbet').value;
   modal.style.display = "none";
-  //alert(quantity);
+  alert(quantity);
   document.getElementById('amountbet').value="";
 }
 
