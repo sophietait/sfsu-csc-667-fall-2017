@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const db = require('../db/index.js');
-var player_id = 4;
+var player_id = 100;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
