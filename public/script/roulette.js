@@ -33,7 +33,6 @@ function sendForgotPassword() {
 function openBettingModal(numberToBet){
     var modal = document.getElementById('myModal');
     modal.style.display = "block";
-    alert(numberToBet);
 }
 
 function closeBettingModal(){
@@ -44,11 +43,73 @@ function closeBettingModal(){
 function getBettingQuantity(){
   quantity = document.getElementById('amountbet').value;
   modal.style.display = "none";
-  alert(quantity);
-  document.getElementById('amountbet').value="";
+  document.getElementById('amountbet').value="";  
+  return quantity;
 }
 
 function getRandomNumber(){
     var winningNumber=Math.floor(Math.random() * 36);
-    alert("Winning number is: "+winningNumber);
+    return winningNumber;
+}
+
+function displayRandomNumber(winningNumber){
+  alert("Winning number is: "+winningNumber);  
+}
+
+function checkBetting(numberToBet){
+  var amountbet=getBettingQuantity();
+  var winningNumber=getRandomNumber();
+  displayRandomNumber(winningNumber);
+
+  for(int ii=0; ii<37; ii++){
+    if(numberToBet==ii){
+      if(winningNumber==ii){
+        currentMoney += amountbet*5;
+      }
+      else{
+        currentMoney -= amountbet;
+      }
+    }
+  }
+
+  switch (numberToBet) {
+    case 50:
+        if(winningNumber==0){
+
+        }
+        else{
+
+        }
+        break;
+    case 60:
+        if(winningNumber==1){
+      
+        }
+        else{
+      
+        }
+        break;
+    case 77:
+        
+    case 88:
+        
+    case 37:
+        
+    case 38:
+        
+    case 39:
+        
+    case 112:
+        
+    case 212:
+        
+    case 312:
+        
+    case 118:
+    
+    case 1936:
+
+    default:
+        console.log("this shouldn't happen");
+}
 }
