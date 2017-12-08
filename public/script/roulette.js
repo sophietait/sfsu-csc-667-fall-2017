@@ -58,7 +58,7 @@ function displayRandomNumber(winningNumber){
   alert("Winning number is: "+winningNumber);
 }
 
-/*
+
 function checkBetting(numberToBet){
     var amountbet=getBettingQuantity();
     var winningNumber=getRandomNumber();
@@ -69,7 +69,8 @@ function checkBetting(numberToBet){
       alert("Sorry, you cannot bet! Please add some credit");
     }
     else{
-      for(int ii=0; ii<37; ii++){
+      var ii;
+      for(ii=0; ii<37; ii++){
         if(numberToBet==ii){
           if(winningNumber==ii){
             currentMoney += amountbet*35;
@@ -212,4 +213,4 @@ function checkBetting(numberToBet){
     //here we should update the credit amount of every player!!!!!!!!
   
   }
-  */
+  
