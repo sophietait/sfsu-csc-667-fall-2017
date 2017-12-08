@@ -30,99 +30,9 @@ function sendForgotPassword() {
   alert("The email has been sent correctly. Please check your email");
 }
 
-function setCookies(form) {
-    if (validation()) {
-        document.cookie = "username=" + document.forms["formSignIn"]["username"].value + ";path=/";
-        document.cookie = "password=" + document.forms["formSignIn"]["password"].value + ";path=/";
-        document.getElementsByClassName("signInModalWindow")[0].style.display = "none";
-        var email = document.forms["formSignIn"]["email"].value;
-        window.open('mailto:' + email + '?subject=Sign in Tripod&body=You just registered in our webpage. Welcome!');
-        alert("Your user has been created correctly");
-    } else {
-        alert("Your user has NOT been created correctly");
-    }
-}
-
-function getCookies(cookiename) {
-    var name = cookiename + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1, c.length);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function checkCookies() {
-    var user = getCookies("username");
-    var pass = getCookies("password");
-    if (user == document.forms["formLogIn"]["username"].value && pass == document.forms["formLogIn"]["password"].value && user != null && user != "" && pass != null && pass != "") {
-        alert("Welcome again " + user);
-        window.location.href = "board.html";
-        return user;
-    } else {
-        alert("Wrong user or password");
-    }
-}
-
-function validation() {
-    var result = false;
-    var nameForm = document.forms["formSignIn"]["name"].value;
-    var userName = document.forms["formSignIn"]["username"].value;
-    var password = document.forms["formSignIn"]["password"].value;
-    var password_length = document.forms["formSignIn"]["password"].length;
-
-    if (document.getElementById("policies").checked == false) {
-        alert("You have to accept the terms of use, privacy and cookies");
-        return result;
-    }
-
-    if (nameForm == null || nameForm == "") {
-        alert("Name must be filled out");
-        return result;
-    }
-
-    if (userName == null || userName == "") {
-        alert("Username must be filled out");
-        return result;
-    }
-
-    //for password
-    if (password == null || password == "") {
-        alert("Password must be filled out");
-        return result;
-    }
-    if (password_length > 10) {
-        alert("Password must be smaller than 10 characters and larger than 2, including one letter and one number");
-        return result;
-    }
-    if (!password.match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/)) {
-        alert("Password must be smaller than 10 characters and larger than 2, including one letter and one number");
-        return result;
-    }
-
-    if (!email.match(/^[a-zA-Z0-9.!#$%&’*+/=?_`{|}~-]+\@[a-zA-Z0-9]+\.[a-zA-Z0-9.]+$/)) {
-        alert("Not a valid e-mail address");
-        return result;
-    }
-
-    if (email == null || email == "") {
-        alert("Email must be filled out");
-        return result;
-    }
-    result = true;
-    return result;
-}
-
 function openBettingModal(numberToBet){
     var modal = document.getElementById('myModal');
     modal.style.display = "block";
-    //alert(numberToBet);
 }
 
 function closeBettingModal(){
@@ -133,11 +43,169 @@ function closeBettingModal(){
 function getBettingQuantity(){
   quantity = document.getElementById('amountbet').value;
   modal.style.display = "none";
-  //alert(quantity);
   document.getElementById('amountbet').value="";
+  return quantity;
 }
 
 function getRandomNumber(){
     var winningNumber=Math.floor(Math.random() * 36);
-    alert("Winning number is: "+winningNumber);
+    return winningNumber;
+}
+
+function displayRandomNumber(winningNumber){
+  alert("Winning number is: "+winningNumber);
+}
+
+function checkBetting(numberToBet){
+  var amountbet=getBettingQuantity();
+  var winningNumber=getRandomNumber();
+  //store the winning number into de game database
+  //currentMoney=get this money from user
+
+  if(currentMoney<=0 || currentMoney-amountbet<=0){
+    alert("Sorry, you cannot bet! Please add some credit");
+  }
+  else{
+    for(int ii=0; ii<37; ii++){
+      if(numberToBet==ii){
+        if(winningNumber==ii){
+          currentMoney += amountbet*35;
+        }
+        else{
+          currentMoney -= amountbet;
+        }
+      }
+    }
+
+    switch (numberToBet) {
+      case 0:
+        if(winningNumber==0){
+          currentMoney += amountbet*4;
+        }
+        else{
+          currentMoney -= amountbet;
+        }
+        break;
+      case 50: //red
+          if(winningNumber== 1 || winningNumber== 3 || winningNumber== 5 ||
+            winningNumber== 7 || winningNumber== 9 || winningNumber== 12 ||
+            winningNumber== 14 || winningNumber== 16 || winningNumber== 18 ||
+            winningNumber== 19 || winningNumber== 21 || winningNumber== 23 ||
+            winningNumber== 25 || winningNumber== 27 || winningNumber== 30 ||
+            winningNumber== 32 || winningNumber== 34 || winningNumber== 36){
+              currentMoney += amountbet;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 60://black
+          if(winningNumber== 2 || winningNumber== 4 || winningNumber== 6 ||
+            winningNumber== 8 || winningNumber== 10 || winningNumber== 11 ||
+            winningNumber== 13 || winningNumber== 15 || winningNumber== 17 ||
+            winningNumber== 20 || winningNumber== 22 || winningNumber== 24 ||
+            winningNumber== 26 || winningNumber== 28 || winningNumber== 29 ||
+            winningNumber== 31 || winningNumber== 33 || winningNumber== 35){
+              currentMoney += amountbet;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 77://odd
+          if(winningNumber%2!=0){
+            currentMoney += amountbet;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 88: //even
+          if(winningNumber%2==0){
+            currentMoney += amountbet;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 37://2 to 1
+          if(winningNumber== 1 || winningNumber== 4 || winningNumber== 7 ||
+            winningNumber== 10 || winningNumber== 13 || winningNumber== 16 ||
+            winningNumber== 19 || winningNumber== 22 || winningNumber== 25 ||
+            winningNumber== 28 || winningNumber== 31 || winningNumber== 34){
+              currentMoney += amountbet*2;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 38://2 to 1
+          if(winningNumber== 2 || winningNumber== 5 || winningNumber== 8 ||
+            winningNumber== 11 || winningNumber== 14 || winningNumber== 17 ||
+            winningNumber== 20 || winningNumber== 23 || winningNumber== 26 ||
+            winningNumber== 29 || winningNumber== 32 || winningNumber== 35){
+              currentMoney += amountbet*2;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 39://2 to 1
+          if(winningNumber== 3 || winningNumber== 6 || winningNumber== 9 ||
+            winningNumber== 12 || winningNumber== 15 || winningNumber== 18 ||
+            winningNumber== 21 || winningNumber== 24 || winningNumber== 27 ||
+            winningNumber== 30 || winningNumber== 33 || winningNumber== 36){
+              currentMoney += amountbet*2;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 112://first 12: 1-12
+          if(0 < winningNumber && winningNumber < 13){
+            currentMoney += amountbet*2;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 212://2nd 12: 13-24
+          if(12 < winningNumber && winningNumber < 25){
+            currentMoney += amountbet*2;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 312://3rd 12: 25-36
+          if(24 < winningNumber && winningNumber < 37){
+            currentMoney += amountbet*2;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 118://1-18
+          if(0 < winningNumber && winningNumber < 19){
+            currentMoney += amountbet;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      case 1936://19-36
+          if(18 < winningNumber && winningNumber < 37){
+            currentMoney += amountbet;
+          }
+          else{
+            currentMoney -= amountbet;
+          }
+          break;
+      default:
+          console.log("this shouldn't happen!");
+      }
+  }
+
+  //here we should update the credit amount of every player!!!!!!!!
+
 }

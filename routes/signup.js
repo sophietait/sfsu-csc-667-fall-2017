@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   console.log(req.body.username);
   //player_id+=1;
-  db.any("INSERT INTO player (player_id, username, email_id, password, balance, state) VALUES ('"+player_id+"','"+req.body.username+"','"+req.body.email+"','"+req.body.password+"',100,0);")
+  db.any("INSERT INTO player (username, email_id, password, balance, state) VALUES ('"+req.body.username+"','"+req.body.email+"','"+req.body.password+"',100,0);")
   res.render('index', { title: 'Roulette' });
 });
 
