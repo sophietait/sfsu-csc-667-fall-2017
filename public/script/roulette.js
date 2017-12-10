@@ -64,7 +64,7 @@ function checkBetting(numberToBet){
     var winningNumber=getRandomNumber();
     //store the winning number into de game database
     //currentMoney=get this money from user
-  
+
     if(currentMoney<=0 || currentMoney-amountbet<=0){
       alert("Sorry, you cannot bet! Please add some credit");
     }
@@ -80,7 +80,7 @@ function checkBetting(numberToBet){
           }
         }
       }
-  
+
       switch (numberToBet) {
         case 0:
           if(winningNumber==0){
@@ -209,8 +209,7 @@ function checkBetting(numberToBet){
             console.log("this shouldn't happen!");
         }
     }
-  
+
     //here we should update the credit amount of every player!!!!!!!!
-  
+
   }
-  

@@ -1,18 +1,30 @@
 var express = require('express');
 var router = express.Router();
-const db = require('../db/index.js');
-//var player_id = 4;
+var db = require('../db/index.js');
+var player_id = 0;
+var player = require('../models/player.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('signup', { title: 'Sign up' });
 });
 
-router.post('/', function(req, res, next) {
-  console.log(req.body.username);
-  //player_id+=1;
-  db.any("INSERT INTO player (username, email_id, password, balance, state) VALUES ('"+req.body.username+"','"+req.body.email+"','"+req.body.password+"',100,0);")
-  res.render('index', { title: 'Roulette' });
+router.post('/', function(req, res) {
+  console.log("add database entry");
+  player.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        })
+        .then(player => {
+          console.log("player created successfully");
+            //req.session.player = player.dataValues;
+            res.render('index', {title: 'Roulette'});
+        })
+        .catch(error => {
+          console.log("player creation error");
+            res.render('index', {title: 'Roulette'});
+        });
 });
 
 module.exports = router;

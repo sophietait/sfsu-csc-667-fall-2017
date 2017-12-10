@@ -1,38 +1,34 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var app = express();
+var Player = require('../models/player.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Roulette' });
+  if (req.session.player && req.cookies.session) {
+    console.log("Session exists. Switch to gamelobby");
+    res.redirect('/gamelobby');
+  } else {
+    res.render('index', {title: 'Roulette'});
+  }
 });
-router.post('/', function(req, res, next) {
-  res.render('gamelobby', { title: 'Roulette' });
-});
-/*
-passport.use(new LocalStrategy(function(username, password, done) {
-  User.findOne({ username: username }, function(err, user) {
-    if (err) { return done(err); }
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
-    }
-    if (!user.validPassword(password)) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    return done(null, user);
-  });
-}
-));
 
+router.post('/', function(req, res) {
+        var username = req.body.username,
+            password = req.body.password;
 
-router.post('/',passport.authenticate('local-index', { successRedirect: '/gamelobby',
-                                 failureRedirect: '/index',
-                                 failureFlash: true }),
-                                 function(req, res, next) {
-                                  res.render('index', { title: 'Roulette' });
-                                }
-);
-*/
+        Player.findOne({ where: { username: username } }).then(function (player) {
+            if (!player) {
+              console.log("login not successful");
+              res.redirect('/index');
+            } else if (!player.validPassword(password)) {
+              console.log("incorrect password");
+              res.redirect('/index');
+            } else {
+              console.log("login successful");
+              req.session.player = player.dataValues;
+              res.redirect('/gamelobby');
+            }
+        });
+    });
+
 module.exports = router;
