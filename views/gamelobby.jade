@@ -7,7 +7,7 @@ block content
     .login
       .login-content
         br
-        form.form(name='formLogIn')
+        form.form(name='formLogIn', method='post')
           br
           a(href='gameroom')
             input(type='button', value='Create Game')
@@ -21,7 +21,6 @@ block content
           a(href='rules')
             input(type='button', value='Rules')
           br
-          a(href='index')
-            input(type='button', value='Logout')
+          input(type='submit', value='Logout')
           br
           br

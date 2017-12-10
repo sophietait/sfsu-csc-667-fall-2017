@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET Game Lobby page. */
+/* return to home page. */
 router.get('/', function(req, res, next) {
-  res.render('gamelobby', { title: 'Game Lobby' });
+  res.render('rules', { title: 'Rules' });
 });
 
 router.post('/', function(req, res) {
-  res.clearCookie('session');
-  console.log("User logout");
-  res.redirect('/index');
+  if (req.cookies.session && !req.session.player) {
+    res.clearCookie('session');
+  }
 });
 
 module.exports = router;

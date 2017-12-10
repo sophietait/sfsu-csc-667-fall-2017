@@ -20,6 +20,7 @@ var gamelobby = require('./routes/gamelobby');
 var addcredit = require('./routes/addcredit');
 var gameroom = require('./routes/gameroom');
 var rules = require('./routes/rules');
+var logout = require('./routes/logout');
 
 var app = express();
 
@@ -59,6 +60,7 @@ app.use('/gamelobby', gamelobby);
 app.use('/addcredit', addcredit);
 app.use('/gameroom', gameroom);
 app.use('/rules', rules);
+app.use('/logout', logout);
 
 /*
 // This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
