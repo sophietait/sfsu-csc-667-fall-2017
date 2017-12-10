@@ -357,9 +357,9 @@ block content
       .chat-history
         .chat-message.clearfix
           .chat-message-content.clearfix
-      form(action='#', method='post')
+      form
         fieldset
-          input(type='text', autocomplete='off', placeholder='Type your message…', autofocus='')
+          input#chatSending(type='text', autocomplete='off', placeholder='Type your message…', autofocus='')
           input(type='hidden')
   #myModal.modal
     .modal-content

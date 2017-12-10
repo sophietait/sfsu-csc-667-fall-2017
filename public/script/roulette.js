@@ -15,6 +15,26 @@ function closechat(){
   document.getElementById("live-chat").style.display="none";
 }
 
+function sendMessageChat(event){
+  if (event.keyCode == 13) {
+    var textMessage=document.getElementById("chatSending").value;
+    console.log(textMessage);
+    alert(textMessage);
+    document.getElementById("chatSending").value="";
+
+    var socket = io();    
+    socket.on('connection', function(socket){
+      io.emit('this',{will: 'be received by everyone'});
+    });
+    
+    socket.emit('chat message', textMessage);
+    socket.on('chat message', function(msg){
+    $(textMessage).append($('.chat-history').text(msg));
+      window.scrollTo(0, document.body.scrollHeight);
+    });  
+  }
+}
+
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
