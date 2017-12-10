@@ -14,7 +14,7 @@ function closechat(){
   document.getElementById("closed-chat").style.display="block";
   document.getElementById("live-chat").style.display="none";
 }
-
+/*
 function sendMessageChat(event){
   if (event.keyCode == 13) {
     var textMessage=document.getElementById("chatSending").value;
@@ -34,7 +34,7 @@ function sendMessageChat(event){
     });  
   }
 }
-
+*/
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
