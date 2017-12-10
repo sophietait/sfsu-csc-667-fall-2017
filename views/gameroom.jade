@@ -352,18 +352,14 @@ block content
   #live-chat
     header.clearfix
       a.chat-close(href='#', onclick='closechat()') x
-      h4 John Doe
-      span.chat-message-counter 3
+      h4 Chat
     .chat
       .chat-history
         .chat-message.clearfix
           .chat-message-content.clearfix
-            h5 John Doe
-            p This is a try message. The chat of roulette is so cool.
-        hr
       form(action='#', method='post')
         fieldset
-          input(type='text', placeholder='Type your message…', autofocus='')
+          input(type='text', autocomplete='off', placeholder='Type your message…', autofocus='')
           input(type='hidden')
   #myModal.modal
     .modal-content
