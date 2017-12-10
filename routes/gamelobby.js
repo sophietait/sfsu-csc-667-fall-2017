@@ -3,7 +3,12 @@ var router = express.Router();
 
 /* GET Game Lobby page. */
 router.get('/', function(req, res, next) {
-  res.render('gamelobby', { title: 'Game Lobby' });
+  if (req.session.player && req.cookies.session) {
+    console.log("Session exists.");
+    res.render('gamelobby', {title: 'Game Lobby'});
+  } else {
+    res.redirect('/index');
+  }
 });
 
 router.post('/', function(req, res) {

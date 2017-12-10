@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET game room. */
 router.get('/', function(req, res, next) {
-  res.render('gameroom', { title: 'Gameroom' });
+  if (req.session.player && req.cookies.session) {
+    console.log("Session exists.");
+    res.render('gameroom', {title: 'Gameroom'});
+  } else {
+    res.redirect('/index');
+  }
 });
 
 module.exports = router;
