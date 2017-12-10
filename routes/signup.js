@@ -19,11 +19,11 @@ router.post('/', function(req, res) {
         .then(player => {
           console.log("player created successfully");
             //req.session.player = player.dataValues;
-            res.render('index', {title: 'Roulette'});
+            res.redirect('index');
         })
         .catch(error => {
           console.log("player creation error");
-            res.render('index', {title: 'Roulette'});
+            res.redirect('index');
         });
 });
 
