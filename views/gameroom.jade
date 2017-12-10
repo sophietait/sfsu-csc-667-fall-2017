@@ -359,7 +359,7 @@ block content
           .chat-message-content.clearfix
       form
         fieldset
-          input#chatSending(type='text', autocomplete='off', placeholder='Type your message…', autofocus='')
+          input#chatSending(type='text', autocomplete='off', placeholder='Type your message…', autofocus='' onkeypress='sendMessageChat(event)')
           input(type='hidden')
   #myModal.modal
     .modal-content
