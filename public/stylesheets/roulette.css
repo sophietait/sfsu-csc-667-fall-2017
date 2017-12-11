@@ -260,6 +260,12 @@ text-align: center;
   background-color:#509fe5;
 }
 
+.modal-turn-header {
+  padding: 5px 40px;
+  background-color: white;
+  color: #3b8dd6;
+  text-align: center;  
+}
 
 
 .image-roulette-spin {

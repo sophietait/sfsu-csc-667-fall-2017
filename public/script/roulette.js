@@ -26,12 +26,39 @@ function closechatLobby(){
   document.getElementById("live-chat-lobby").style.display="none";
 }
 
+function startTimer() {
+  var presentTime = document.getElementById('player-timer').innerHTML;
+  var timeArray = presentTime.split(/[:]+/);
+  var s = checkSecond((timeArray[1] - 1));
+  document.getElementById('player-timer').innerHTML = "00:" + s;
+  setTimeout(startTimer, 1000);
+  }
+
+  function checkSecond(sec) {
+    if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+    if (sec < 0){ sec="00";}
+    return sec;
+  }
+
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
   setTimeout(function(){
     openWinningNumberModal();
   }, 3000);
+  setTimeout(function(){
+    document.getElementById('winning').style.display="none";
+    document.getElementById('startturn').style.display="block";
+    startTimer();
+    }, 6000);
+  setTimeout(function(){
+    document.getElementById('startturn').style.display="none";
+    document.getElementById('endturn').style.display="block";
+    }, 66000);
+  setTimeout(function(){
+    document.getElementById('endturn').style.display="none";
+    no_spinning();
+    }, 68000);
 }
 
 function no_spinning(){
