@@ -22,6 +22,9 @@ var gameroom = require('./routes/gameroom');
 var rules = require('./routes/rules');
 var logout = require('./routes/logout');
 
+var place_bets = 0;
+var winning_number = -1;
+
 var app = express();
 app.io = require('socket.io')();
 
@@ -30,7 +33,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -62,19 +65,10 @@ app.use('/addcredit', addcredit);
 app.use('/gameroom', gameroom);
 app.use('/rules', rules);
 app.use('/logout', logout);
-
-/*
-// This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
-// This usually happens when you stop your express server after login, your cookie still remains saved in the browser.
-app.use((req, res, next) => {
-  console.log("mayuresh 1");
-    if (req.cookies.session && !req.session.player) {
-      console.log("mayuresh23");
-      res.clearCookie('session');
-    }
-    next();
-});
-*/
+app.use('/placebets', gameroom);
+app.use('/holdbets', gameroom);
+app.use('/updatescore', gameroom);
+app.use('/winningnumber', gameroom);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -94,20 +88,31 @@ app.use(function(err, req, res, next) {
    res.render('error');
 });
 
-app.io.on('connection', function(socket){  
-  console.log('a user connected');
-});
-
-
 // start listen with socket.io
-app.io.on('connection', function(socket){  
-  console.log('a user connected');
+app.io.on("connection", function(socket) {
+  console.log("server socket received connection message: " + socket);
 
-  socket.on('new message', function(msg){
-    console.log('new message: ' + msg);
-    app.io.emit('chat message', msg);
+  socket.on("new message", function(msg) {
+    console.log("new message: " + msg);
+    app.io.emit("chat message", msg);
   });
 });
 
+var timer = setInterval(function () {
+  if(place_bets == 0) {
+    console.log("Roulette: place your bets");
+    place_bets = 1;
+  } else if(place_bets == 1) {
+    console.log("Roulette: hold your bets");
+    place_bets = 2;
+  } else if(place_bets == 2) {
+    winning_number = Math.round((Math.random() * 36));
+    console.log("Roulette: winning number is -------- " + winning_number);
+    place_bets = 3;
+  } else if(place_bets == 3) {
+    console.log("Roulette: players update your scores");
+    place_bets = 0;
+  }
+}, 1000);
 
 module.exports = app;

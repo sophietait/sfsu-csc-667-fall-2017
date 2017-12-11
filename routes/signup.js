@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/index.js');
-var player_id = 0;
 var player = require('../models/player.js');
 
 /* GET home page. */
@@ -14,16 +13,18 @@ router.post('/', function(req, res) {
   player.create({
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            player_id: -1,
+            balance: 100,
+            status: 0
         })
         .then(player => {
           console.log("player created successfully");
-            //req.session.player = player.dataValues;
-            res.redirect('index');
+          res.redirect('index');
         })
         .catch(error => {
           console.log("player creation error");
-            res.redirect('index');
+          res.redirect('/index');
         });
 });
 

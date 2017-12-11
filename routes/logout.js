@@ -1,15 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var Player = require('../models/player.js');
 
-/* return to home page. */
+/* clear player data and return to home page. */
 router.get('/', function(req, res, next) {
-  res.render('rules', { title: 'Rules' });
-});
-
-router.post('/', function(req, res) {
-  if (req.cookies.session && !req.session.player) {
-    res.clearCookie('session');
-  }
+  res.redirect('index');
 });
 
 module.exports = router;

@@ -25,6 +25,10 @@ router.post('/', function(req, res) {
               res.redirect('/index');
             } else {
               console.log("login successful");
+              var random_number = Math.round((Math.random() * 10000));
+              player.updateAttributes({
+                player_id: random_number
+              });
               req.session.player = player.dataValues;
               res.redirect('/gamelobby');
             }
