@@ -401,9 +401,11 @@ block content
     var socket = io();
     function sendMessageChat(event){
       if (event.keyCode == 13) {
-        var player="#{username}"+": "+$('#chatSending').val();
-        socket.emit('new message', player);
-        $('#chatSending').val('');
+        if($('#chatSending').val()!=""){
+          var player="#{username}"+": "+$('#chatSending').val();
+          socket.emit('new message', player);
+          $('#chatSending').val('');
+        }
       }
     }
     socket.on('chat message', function(msg){
