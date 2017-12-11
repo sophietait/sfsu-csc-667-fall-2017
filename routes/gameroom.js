@@ -5,14 +5,12 @@ app.io = require('socket.io')();
 
 /* GET game room. */
 router.get('/', function(req, res, next) {
-  console.log(req);
   if (req.session.player && req.cookies.session) {
     console.log("Session exists.");
     res.render('gameroom', {
       title: 'Gameroom',
       username: req.session.player.username,
       balance: req.session.player.balance
-      
     });
   } else {
     res.redirect('/index');

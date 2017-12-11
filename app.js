@@ -115,6 +115,17 @@ app.io.on("connection", function(socket) {
     app.io.emit("creditt", bal);
   });
 
+  socket.on('gameroom status poll', function(status) {
+    if(status != place_bets) {
+      console.log(status + " != " + place_bets);
+      app.io.emit('gameroom status update', place_bets);
+    }
+  });
+
+  socket.on('get winning number', function(number) {
+    console.log("send winning number to client");
+    app.io.emit('current winning number', winning_number);
+  });
 });
 
 var timer = setInterval(function () {
@@ -132,6 +143,6 @@ var timer = setInterval(function () {
     console.log("Roulette: players update your scores");
     place_bets = 0;
   }
-}, 1000);
+}, 10000);
 
 module.exports = app;

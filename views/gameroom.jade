@@ -2,7 +2,7 @@ extends layout
 
 block content
   .roulette-header
-    img(src='images/r_logo.png', width='300px')
+    img(src='images/r_logo.png', width='300px', onload='startPolling()')
     h1(style='color:white') Welcome #{username}! Your balance is #{balance}
   .roulette-second-header
     span#player-timer(onclick='startTimer()')
@@ -400,7 +400,9 @@ block content
   script(src='//code.jquery.com/jquery-1.11.3.min.js')
   script.
     var socket = io();
-    function sendMessageChat(event){
+    var place_bets = 0;
+    var winning_number = -1;
+    function sendMessageChat(event) {
       if (event.keyCode == 13) {
         if($('#chatSending').val()!=""){
           var player="#{username}"+": "+$('#chatSending').val();
@@ -409,7 +411,34 @@ block content
         }
       }
     }
-    socket.on('chat message', function(msg){
+    function startPolling() {
+      var interval = setInterval(function () {
+        socket.emit('gameroom status poll', place_bets);
+      }, 500);
+    }
+    function fetchWinningNumber() {
+      socket.emit('get winning number', winning_number);
+    }
+    socket.on('chat message', function(msg) {
         console.log("message received");
         $('#messages-area').append($('<li>').text(msg));
+    });
+    socket.on('gameroom status update', function(value) {
+        place_bets = value;
+        if(place_bets == 0) {
+          // allow player to play game
+        } else if(place_bets == 0) {
+          // disable the roulette table and
+          // spin the wheel
+        } else if(place_bets == 3) {
+          // get winning number from server
+          fetchWinningNumber();
+        } else if(place_bets == 4) {
+          // calculate player score
+        }
+        console.log("gameroom status update " + value);
+    });
+    socket.on('gameroom status update', function(value) {
+        winning_number = value;
+        console.log("gameroom winning number " + winning_number);
     });
