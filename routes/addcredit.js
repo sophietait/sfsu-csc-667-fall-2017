@@ -5,12 +5,20 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   if (req.session.player && req.cookies.session) {
     console.log("Session exists.");
-    res.render('addcredit', { 
-      title: 'Roulette',
-      username: req.session.player.username,      
-      balance: req.session.player.balance,
-      p: require('../models/player.js')
-     });
+    var myBalance;
+    var Player = require('../models/player');
+    Player.findOne({ where: { username: req.session.player.username }})
+    .then(function (player) {
+      if (player) {
+        myBalance=player.balance
+      }
+      res.render('addcredit', { 
+        title: 'Roulette',
+        username: req.session.player.username,      
+        balance: myBalance,
+        p: require('../models/player.js')
+       });
+    });
   } else {
     res.redirect('/index');
   }
