@@ -6,13 +6,21 @@ var Player = require('../models/player.js');
 router.get('/', function(req, res, next) {
   if (req.session.player && req.cookies.session) {
     console.log("Session exists.");
-    res.render('gamelobby', {
-      title: 'Game Lobby',
-      username: req.session.player.username,
-      balance: req.session.player.balance
+    var myBalance;
+    var Player = require('../models/player');
+    Player.findOne({ where: { username: req.session.player.username }})
+    .then(function (player) {
+      if (player) {
+        myBalance=player.balance
+      }
+      res.render('gamelobby', { 
+        title: 'Roulette',
+        username: req.session.player.username,      
+        balance: myBalance
+       });
     });
   } else {
-    res.redirect('index');
+    res.redirect('/index');
   }
 });
 

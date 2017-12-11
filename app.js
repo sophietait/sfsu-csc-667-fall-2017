@@ -127,6 +127,27 @@ var timer = setInterval(function () {
   } else if(place_bets == 2) {
     winning_number = Math.round((Math.random() * 36));
     console.log("Roulette: winning number is -------- " + winning_number);
+
+    /*
+    function spinning(winning_num){
+      document.getElementsByClassName("image-roulette")[0].style.display="none";
+      document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
+      setTimeout(function(){
+        openWinningNumberModal(winning_num);
+      }, 3000);
+    }
+
+    function openWinningNumberModal(winning_num){
+      var modal = document.getElementById('winning');
+      modal.style.display = "block";
+      document.getElementById('winningNumber').value = winning_num;
+    }
+
+    function no_spinning(){
+      document.getElementsByClassName("image-roulette-spin")[0].style.display="none";
+      document.getElementsByClassName("image-roulette")[0].style.display="inline-block";
+    }
+*/
     place_bets = 3;
   } else if(place_bets == 3) {
     console.log("Roulette: players update your scores");

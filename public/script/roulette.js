@@ -46,13 +46,8 @@ function sendForgotPassword() {
 function openWinningNumberModal(){
   var modal = document.getElementById('winning');
   modal.style.display = "block";
-  var num = getRandomNumber();
-  document.getElementById('winningNumber').value = num;
-}
-
-function closeWinningNumberModal(){
-  var modal = document.getElementById('winning');
-  modal.style.display = "none";
+  var w = getRandomNumber();
+  document.getElementById('winningNumber').value = w;
 }
 
 function openBettingModal(numberToBet){
