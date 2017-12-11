@@ -28,7 +28,7 @@ block content
     .modal-leaderboard
       .modal-leaderboard-header
         span.close(onclick='closeLeaderModal()') ×
-        h2 These are the current players and their balance:
+        h2 Current players and their balance
       .modal-leaderboard-body
         p Player: #{username} Balance: #{balance}
 
@@ -46,6 +46,14 @@ block content
         fieldset
           input#chatSendingLobby(type='text', autocomplete='off', placeholder='Type your message…', autofocus='', onkeypress='sendMessageChatLobby(event)')
           input(type='hidden')
+
+  script.
+    var modal = document.getElementById('leaderboard');
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
 
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')

@@ -1,3 +1,10 @@
+function wait(ms){
+  var start = new Date().getTime();
+  var end = start;
+  while(end < start + ms) {
+    end = new Date().getTime();
+  }
+}
 
 function openchat(){
   document.getElementById("closed-chat").style.display="none";
@@ -22,7 +29,9 @@ function closechatLobby(){
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
-  getRandomNumber();
+  setTimeout(function(){
+    openWinningNumberModal();
+  }, 3000);
 }
 
 function no_spinning(){
@@ -34,10 +43,16 @@ function sendForgotPassword() {
   alert("The email has been sent correctly. Please check your email");
 }
 
+function openWinningNumberModal(){
+  var modal = document.getElementById('winning');
+  modal.style.display = "block";
+  var w = getRandomNumber();
+  document.getElementById('winningNumber').value = w;
+}
+
 function openBettingModal(numberToBet){
     var modal = document.getElementById('myModal');
     modal.style.display = "block";
-    alert(numberToBet);
 }
 
 function closeBettingModal(){
@@ -58,7 +73,6 @@ function closeLeaderModal(){
 function getBettingQuantity(){
   var quantity = document.getElementById('amountbet').value;
   modal.style.display = "none";
-  alert(quantity);
   document.getElementById('amountbet').value="";
   return quantity;
 }
@@ -67,11 +81,6 @@ function getRandomNumber(){
     var winningNumber=Math.floor(Math.random() * 36);
     return winningNumber;
 }
-
-function displayRandomNumber(winningNumber){
-  alert("Winning number is: "+winningNumber);
-}
-
 
 function checkBetting(numberToBet){
     var amountbet=getBettingQuantity();

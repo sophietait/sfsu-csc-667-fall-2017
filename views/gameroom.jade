@@ -3,15 +3,18 @@ extends layout
 block content
   .roulette-header
     img(src='images/r_logo.png', width='300px', onload='startPolling()')
-    h1(style='color:white') Welcome #{username}! Your balance is #{balance}
+    .userandbalance
+      h1(style='color:white') Welcome #{username}!
+      h2(style='color:white') YOUR BALANCE IS $#{balance}
   .roulette-second-header
     span#player-timer(onclick='startTimer()')
+    a(href='addcredit')
+      input(type='button', value='Add credit')
     a(href='gamelobby')
       input(type='button', value='Back')
   .background-gameroom
     img.image-roulette(src='images/rou.png', onclick='spinning()')
     img.image-roulette-spin(src='images/rou.png', onclick='no_spinning()')
-    // <img class="image-table" src="images/table.png">
     .tableroulette
       table
         tr.nums
@@ -368,12 +371,22 @@ block content
       .modal-body
         input#amountbet.username(type='text', name='money_amount', placeholder='$ Money')
         input(type='button', value='Accept', onclick='getBettingQuantity()')
+
+  #winning.modal
+    .modal-content
+      .modal-winning-header
+        h2 Winning Number
+      .modal-body
+        input#winningNumber(type='button', value='')
+
   script.
     var modal = document.getElementById('myModal');
+    var modal2 = document.getElementById('winning');
     window.onclick = function(event) {
-    if (event.target == modal) {
-    modal.style.display = "none";
-    }
+      if (event.target == modal || event.target == modal2) {
+        modal.style.display = "none";
+        modal2.style.display = "none";
+      }
     }
     document.getElementById('player-timer').innerHTML = "00:" + 60;
     function startTimer() {

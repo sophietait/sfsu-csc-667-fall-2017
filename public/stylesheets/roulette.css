@@ -8,20 +8,48 @@ body {
   margin-top: 10px;
   color:white;
   font-size:25px;
+  margin-right: 15px;
   text-align:center;
+  cursor: pointer;
 }
 
 .roulette-header{
   background-color: #08682e;
   padding:0;
   margin:0;
+  display: inline-block;  
+  width: 100%;
 }
 
-.roulette-header h1{
-  right:5px;
+.roulette-header img{
+  border: 0;
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
 }
+
+.userandbalance{
+  color: white;
+  margin-left: 43%;
+  width: 30%;
+  text-align: center;
+  display: inline-block;
+}
+
+.userandbalance h1{
+  font-family: 'Homemade Apple';  
+}
+
+.userandbalance h2{
+  /*font-family: 'Holtwood One SC';
+  font-family: 'Londrina Shadow';*/
+  font-family: 'Julius Sans One';
+  font-size: 24px;
+}
+
 .roulette-second-header{
   text-align: right;
+  margin-right: 55px;
 }
 
 .container {
@@ -152,7 +180,7 @@ input[type=button], input[type=submit] {
     height: 100%;
     overflow: auto;
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.6);
 }
 
 .modal-content {
@@ -185,6 +213,7 @@ input[type=button], input[type=submit] {
     padding: 5px 40px;
     background-color: white;
     color: black;
+    text-align: center;
 }
 
 .modal-body {
@@ -208,6 +237,7 @@ input[type=button], input[type=submit] {
   padding: 5px 40px;
   background-color: white;
   color: black;
+  text-align: center;  
 }
 
 .modal-leaderboard-body {
@@ -215,6 +245,19 @@ padding: 5px 40px;
 margin-bottom: 40px;
 color: black;
 text-align: center;
+}
+
+.modal-winning-header {
+  padding: 5px 40px;
+  background-color: white;
+  color: #3b8dd6;
+  text-align: center;  
+}
+
+#winningNumber{
+  font-size: 80px;
+  color:white; 
+  background-color:#509fe5;
 }
 
 
