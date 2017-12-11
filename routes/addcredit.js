@@ -5,7 +5,10 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   if (req.session.player && req.cookies.session) {
     console.log("Session exists.");
-    res.render('addcredit', { title: 'Add credit' });
+    res.render('addcredit', { 
+      title: 'Roulette',
+      balance: req.session.player.balance
+     });
   } else {
     res.redirect('/index');
   }

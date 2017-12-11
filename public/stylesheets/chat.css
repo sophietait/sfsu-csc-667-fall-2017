@@ -39,17 +39,12 @@ input {
     font-family: inherit;
     font-size: 100%;
     line-height: normal;
-    margin: 0;
+	margin: 10px;
+    margin-left: 25px;
 }
 
 p { margin: 0; }
 
-.clearfix { *zoom: 1; } /* For IE 6/7 */
-.clearfix:before, .clearfix:after {
-    content: "";
-    display: table;
-}
-.clearfix:after { clear: both; }
 
 /* ---------- LIVE-CHAT ---------- */
 
@@ -104,11 +99,6 @@ p { margin: 0; }
 	font-size: 10px;
 }
 
-#live-chat {
-	padding: 24px;
-}
-
-
 #live-chat input[type="text"] {
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -137,24 +127,17 @@ p { margin: 0; }
 
 .chat-history {
 	height: 252px;
-	padding: 8px 24px;
+	padding: 8px 8px;
 	overflow-y: scroll;
 }
 
-.chat-message {
-	margin: 5px 0;
+li {
+	text-decoration: none;
+	list-style-type: none;	
+	margin-left: 0;
 }
 
-.chat-message-content {
-	margin-left: 5px;
-}
-
-.chat-time {
-	float: right;
-	font-size: 10px;
-}
-
-.chat-feedback {
-	font-style: italic;
-	margin: 0 0 0 80px;
+#messages-area {
+	margin: 5px;
+	padding: 15px;
 }

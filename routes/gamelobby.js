@@ -6,7 +6,10 @@ var Player = require('../models/player.js');
 router.get('/', function(req, res, next) {
   if (req.session.player && req.cookies.session) {
     console.log("Session exists.");
-    res.render('gamelobby', {title: 'Game Lobby'});
+    res.render('gamelobby', {
+      title: 'Game Lobby',
+      username: req.session.player.username
+    });
   } else {
     res.redirect('index');
   }

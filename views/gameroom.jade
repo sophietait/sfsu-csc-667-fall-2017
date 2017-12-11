@@ -355,9 +355,7 @@ block content
       h4 Chat
     .chat
       .chat-history
-        //.chat-message.clearfix
-        ul#messages-area
-          .chat-message-content.clearfix
+          ul#messages-area
         fieldset
           input#chatSending(type='text', autocomplete='off', placeholder='Type your message…', autofocus='' onkeypress='sendMessageChat(event)')
           input(type='hidden')
@@ -403,7 +401,8 @@ block content
     var socket = io();
     function sendMessageChat(event){
       if (event.keyCode == 13) {
-        socket.emit('new message', $('#chatSending').val());
+        var player="#{username}"+": "+$('#chatSending').val();
+        socket.emit('new message', player);
         $('#chatSending').val('');
       }
     }

@@ -8,9 +8,10 @@ router.get('/', function(req, res, next) {
   console.log(req);
   if (req.session.player && req.cookies.session) {
     console.log("Session exists.");
-    res.render('gameroom', {title: 'Gameroom'});
-    console.log("player username: " + req.session.player.username);
-    app.io.emit('username', req.session.player.username);
+    res.render('gameroom', {
+      title: 'Gameroom',
+      username: req.session.player.username
+    });
   } else {
     res.redirect('/index');
   }
