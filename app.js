@@ -102,6 +102,19 @@ app.io.on("connection", function(socket) {
     app.io.emit("chat message lobby", msg);
   });
 
+  socket.on("new credit value", function(bal, user) {
+    console.log("jiji new balance: " + bal);
+    var Player = require('./models/player');
+    Player.findOne({ where: { username: user }}).then(function (player) {
+      if (player) {
+        player.updateAttributes({
+          balance: bal
+        });
+      }
+    });
+    app.io.emit("creditt", bal);
+  });
+
 });
 
 var timer = setInterval(function () {

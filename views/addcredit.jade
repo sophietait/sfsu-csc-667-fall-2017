@@ -20,14 +20,20 @@ block content
             input(type='button', value='Back')          
           br
 
+  script(src='/socket.io/socket.io.js')
   script.
+    var socket = io();
     function addCredit(){
       var creditToAdd = parseInt(document.getElementById("addmorecreddit").value);
       var currentCredit = parseInt(#{balance});
       currentCredit+=creditToAdd;
       document.getElementById("addmorecreddit").value="";
       alert(currentCredit);
-
-      //update database with query!
+      socket.emit('new credit value', currentCredit, "#{username}");
     }
+    socket.on('creditt', function(bal){
+        console.log("CREEEDIT UPDATED");
+        window.location.href = '/logout';
+    });
+
 

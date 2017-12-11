@@ -7,7 +7,9 @@ router.get('/', function(req, res, next) {
     console.log("Session exists.");
     res.render('addcredit', { 
       title: 'Roulette',
-      balance: req.session.player.balance
+      username: req.session.player.username,      
+      balance: req.session.player.balance,
+      p: require('../models/player.js')
      });
   } else {
     res.redirect('/index');

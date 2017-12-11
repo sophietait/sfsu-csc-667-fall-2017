@@ -3,6 +3,7 @@ extends layout
 block content
   .roulette-header
     img(src='images/r_logo.png', width='300px')
+    h1(style='color:white') Welcome #{username}! Your balance is #{balance}
   .roulette-second-header
     span#player-timer(onclick='startTimer()')
     a(href='gamelobby')
