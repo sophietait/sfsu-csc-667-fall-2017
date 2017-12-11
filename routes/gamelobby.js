@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
     console.log("Session exists.");
     res.render('gamelobby', {
       title: 'Game Lobby',
-      username: req.session.player.username
+      username: req.session.player.username,
+      balance: req.session.player.balance
     });
   } else {
     res.redirect('index');

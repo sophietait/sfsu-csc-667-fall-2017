@@ -10,10 +10,9 @@ block content
         form.form(name='formLogIn', method='post')
           br
           a(href='gameroom')
-            input(type='button', value='Create Game')
-          br
-          a(href='gameroom')
             input(type='button', value='Join Game')
+          br
+          input(type='button', value='Leaderboard' onclick='openLeaderModal()')
           br
           a(href='addcredit')
             input(type='button', value='Add Credit')
@@ -24,3 +23,10 @@ block content
           input(type='submit', value='Logout')
           br
           br
+  #leaderboard.modal
+    .modal-leaderboard
+      .modal-leaderboard-header
+        span.close(onclick='closeLeaderModal()') ×
+        h2 These are the current players and their balance:
+      .modal-leaderboard-body
+        p Player: #{username} Balance: #{balance}

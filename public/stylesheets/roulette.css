@@ -45,7 +45,7 @@ body {
   margin-left: 30%;
   margin-top: 50px;
   width:40%;
-  height: 450px;
+  height: 520px;
   background-color: black;
   opacity: 0.9;
 }
@@ -189,6 +189,32 @@ input[type=button], input[type=submit] {
   margin-bottom: 40px;
   text-align: center;
 }
+
+.modal-leaderboard {
+  position: relative;
+  background-color: white;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 60%;
+  height:300px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.modal-leaderboard-header {
+  padding: 5px 40px;
+  background-color: white;
+  color: black;
+}
+
+.modal-leaderboard-body {
+padding: 5px 40px;
+margin-bottom: 40px;
+color: black;
+text-align: center;
+}
+
+
 
 .image-roulette-spin {
   margin-left:15px;

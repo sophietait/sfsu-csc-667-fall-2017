@@ -61,6 +61,16 @@ function closeBettingModal(){
     modal.style.display = "none";
 }
 
+function openLeaderModal(){
+  var modal = document.getElementById('leaderboard');
+  modal.style.display = "block";
+}
+
+function closeLeaderModal(){
+  var modal = document.getElementById('leaderboard');
+  modal.style.display = "none";
+}
+
 function getBettingQuantity(){
   var quantity = document.getElementById('amountbet').value;
   modal.style.display = "none";
