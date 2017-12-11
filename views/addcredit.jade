@@ -8,17 +8,26 @@ block content
       .login-content
         br
         br
-        form.form(name='addCredit')
+        form.form
           br
           h1(style='color:white') Your balance is #{balance}
           br
-          input.username(type='text', name='addedcredit', placeholder='Enter amount to add to credit')
+          input.username(type='text', id="addmorecreddit", placeholder='Enter amount to add to credit')
           br
-          a(href='')
-            input(type='button', value='Enter', onclick='addCredit()')
+          input(type='button', value='Enter', onclick="addCredit()")
           br
           a(href='gamelobby')
-            input(type='button', value='Back')
-          
+            input(type='button', value='Back')          
           br
-          br
+
+  script.
+    function addCredit(){
+      var creditToAdd = parseInt(document.getElementById("addmorecreddit").value);
+      var currentCredit = parseInt(#{balance});
+      currentCredit+=creditToAdd;
+      document.getElementById("addmorecreddit").value="";
+      alert(currentCredit);
+
+      //update database with query!
+    }
+

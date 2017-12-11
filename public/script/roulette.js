@@ -1,9 +1,3 @@
-function addCredit(form){
-    var currentCredit = document.getElementById("credit");
-    var addedCredit = form.addedCredit.value;
-    currentCredit += addedCredit;
-    alert(currentCredit);
-}
 
 function openchat(){
   document.getElementById("closed-chat").style.display="none";
@@ -14,27 +8,17 @@ function closechat(){
   document.getElementById("closed-chat").style.display="block";
   document.getElementById("live-chat").style.display="none";
 }
-/*
-function sendMessageChat(event){
-  if (event.keyCode == 13) {
-    var textMessage=document.getElementById("chatSending").value;
-    console.log(textMessage);
-    alert(textMessage);
-    document.getElementById("chatSending").value="";
 
-    var socket = io();    
-    socket.on('connection', function(socket){
-      io.emit('this',{will: 'be received by everyone'});
-    });
-    
-    socket.emit('chat message', textMessage);
-    socket.on('chat message', function(msg){
-    $(textMessage).append($('.chat-history').text(msg));
-      window.scrollTo(0, document.body.scrollHeight);
-    });  
-  }
+function openchatLobby(){
+  document.getElementById("closed-chat-lobby").style.display="none";
+  document.getElementById("live-chat-lobby").style.display="block";
 }
-*/
+
+function closechatLobby(){
+  document.getElementById("closed-chat-lobby").style.display="block";
+  document.getElementById("live-chat-lobby").style.display="none";
+}
+
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
@@ -53,7 +37,7 @@ function sendForgotPassword() {
 function openBettingModal(numberToBet){
     var modal = document.getElementById('myModal');
     modal.style.display = "block";
-    //alert(numberToBet);
+    alert(numberToBet);
 }
 
 function closeBettingModal(){
@@ -74,7 +58,7 @@ function closeLeaderModal(){
 function getBettingQuantity(){
   var quantity = document.getElementById('amountbet').value;
   modal.style.display = "none";
-  //alert(quantity);
+  alert(quantity);
   document.getElementById('amountbet').value="";
   return quantity;
 }

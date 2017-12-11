@@ -23,6 +23,7 @@ block content
           input(type='submit', value='Logout')
           br
           br
+
   #leaderboard.modal
     .modal-leaderboard
       .modal-leaderboard-header
@@ -30,3 +31,41 @@ block content
         h2 These are the current players and their balance:
       .modal-leaderboard-body
         p Player: #{username} Balance: #{balance}
+
+  #closed-chat-lobby
+    header.clearfix
+      a.chat-close-lobby(href='#', onclick='openchatLobby()') 
+      h4 Chat in gamelobby
+  #live-chat-lobby
+    header.clearfix
+      a.chat-close-lobby(href='#', onclick='closechatLobby()') x
+      h4 Chat in gamelobby
+    .chat-lobby
+      .chat-history-lobby
+          ul#messages-area-lobby
+        fieldset
+          input#chatSendingLobby(type='text', autocomplete='off', placeholder='Type your message…', autofocus='', onkeypress='sendMessageChatLobby(event)')
+          input(type='hidden')
+
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='//code.jquery.com/jquery-1.11.3.min.js')
+  script.
+    var socket = io();
+    function sendMessageChatLobby(event){
+      if (event.keyCode == 13) {        
+        if($('#chatSendingLobby').val()!=""){
+          var player="#{username}"+": "+$('#chatSendingLobby').val();
+          socket.emit('new message lobby', player);
+          $('#chatSendingLobby').val('');
+        }
+      }
+    }
+    
+    socket.on('chat message lobby', function(msg){
+        console.log("message received from lobby");
+        $('#messages-area-lobby').append($('<li>').text(msg));
+    });
+    

@@ -96,6 +96,12 @@ app.io.on("connection", function(socket) {
     console.log("new message: " + msg);
     app.io.emit("chat message", msg);
   });
+
+  socket.on("new message lobby", function(msg) {
+    console.log("new message: " + msg);
+    app.io.emit("chat message lobby", msg);
+  });
+
 });
 
 var timer = setInterval(function () {

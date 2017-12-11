@@ -1,0 +1,95 @@
+/* ---------- LIVE-CHAT ---------- */
+
+#closed-chat-lobby {
+	bottom: 0;
+	font-size: 12px;
+	right: 24px;
+	position: fixed;
+	width: 300px;
+	display:none;
+}
+
+#closed-chat-lobby header {
+	background: #293239;
+	border-radius: 5px 5px 0 0;
+	color: #fff;
+	cursor: pointer;
+	padding: 16px 24px;
+}
+
+#live-chat-lobby {
+	bottom: 0;
+	font-size: 12px;
+	right: 24px;
+	position: fixed;
+	width: 300px;
+}
+
+#live-chat-lobby header {
+	background: #293239;
+	border-radius: 5px 5px 0 0;
+	color: #fff;
+	cursor: pointer;
+	padding: 16px 24px;
+}
+
+#live-chat-lobby h4:before {
+	background: #1a8a34;
+	border-radius: 50%;
+	content: "";
+	display: inline-block;
+	height: 8px;
+	margin: 0 8px 0 0;
+	width: 8px;
+}
+
+#live-chat-lobby h4 {
+	font-size: 12px;
+}
+
+#live-chat-lobby h5 {
+	font-size: 10px;
+}
+
+#live-chat-lobby input[type="text"] {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 8px;
+	outline: none;
+	width: 234px;
+}
+
+.chat-close-lobby {
+	background: #1b2126;
+	border-radius: 50%;
+	color: #fff;
+	display: block;
+	float: right;
+	font-size: 10px;
+	height: 16px;
+	line-height: 16px;
+	margin: 2px 0 0 0;
+	text-align: center;
+	width: 16px;
+}
+
+.chat-lobby {
+	background: #fff;
+}
+
+.chat-history-lobby {
+	height: 252px;
+	padding: 8px 8px;
+	overflow-y: scroll;
+}
+
+li {
+	text-decoration: none;
+	list-style-type: none;	
+	margin-left: 0;
+}
+
+#messages-area-lobby {
+	margin: 5px;
+	padding: 15px;
+}
