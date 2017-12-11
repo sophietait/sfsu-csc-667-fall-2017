@@ -1,7 +1,7 @@
 'use strict';
 
 var Sequelize = require('sequelize');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 // create a sequelize instance with our local postgres database information.
 
