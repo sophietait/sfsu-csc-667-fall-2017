@@ -54,11 +54,11 @@ function spinning(){
   setTimeout(function(){
     document.getElementById('startturn').style.display="none";
     document.getElementById('endturn').style.display="block";
+    no_spinning();    
     }, 66000);
   setTimeout(function(){
     document.getElementById('endturn').style.display="none";
-    no_spinning();
-    }, 68000);
+    }, 70000);
 }
 
 function no_spinning(){
