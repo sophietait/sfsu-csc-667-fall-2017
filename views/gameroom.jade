@@ -455,9 +455,9 @@ block content
       }
 
       function checkBetting(){
-        numberToBet = parseInt(betting_id);
-        amountbet = parseInt(amount_bet);
-        currentMoney = parseInt(#{balance});
+        var numberToBet = parseInt(betting_id);
+        var amountbet = parseInt(amount_bet);
+        var currentMoney = parseInt($("#balanceupdating").html());    
         winningNumber = winning_number;
 
         if(currentMoney<=0 || currentMoney-amountbet<=0){
@@ -612,6 +612,9 @@ block content
 
         //update the credit amount of player!!
         //alert("Your new current balance is: "+currentMoney);
+        betting_id=-1;
+        amount_bet=-1;
+
         document.getElementById('alertupdates').value = "Your new current balance is: "+currentMoney;
         socket.emit('new balance value', currentMoney, "#{username}");
       }
