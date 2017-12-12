@@ -124,7 +124,7 @@ app.io.on("connection", function(socket) {
         });
       }
     });
-    app.io.emit("betting credit", bal);
+    app.io.emit("betting credit", bal, user);
   });
 
   socket.on('gameroom status poll', function(status) {

@@ -5,7 +5,8 @@ block content
     img(src='images/r_logo.png', width='300px' onload='startPolling()')
     .userandbalance
       h1(style='color:white') Welcome #{username}!
-      h2(style='color:white') YOUR BALANCE IS $#{balance}
+      h2(style='color:white; display:inline-block') YOUR BALANCE IS $
+      h2(style='color:white; display:inline-block', id="balanceupdating") #{balance}
   .roulette-second-header
     .alertupdate
       input#alertupdates(type='text', value='')
@@ -384,7 +385,7 @@ block content
   #startturn.modal
     .modal-content
       .modal-turn-header
-        h2 Your turn just started! Please start betting
+        h2 Your turn just started! Please start betting. You have 15 seconds.
 
   #endturn.modal
     .modal-content
@@ -615,9 +616,13 @@ block content
         socket.emit('new balance value', currentMoney, "#{username}");
       }
 
-      socket.on('betting credit', function(bal){
+      socket.on('betting credit', function(bal, user){
           console.log("CREDIT UPDATED FROM THE BETTING RESULTS");
           //location.reload();
+          if("#{username}"==user){
+            $("#balanceupdating").html(bal);
+            //"{#balance}".innerHTML = bal;
+          }
       });
 
       socket.on('chat message', function(msg) {
@@ -635,10 +640,11 @@ block content
       socket.on('gameroom status update', function(value) {            
           place_bets = value;
           if(place_bets == 0) {
+              reestartTimer();
               startplayerturn();
           } else if(place_bets == 1) {
-              reestartTimer();
-              socket.emit('get winning number', winning_number);          
+              socket.emit('get winning number', winning_number);        
+              document.getElementById('alertupdates').value = "Updating the balances...";
           } else if(place_bets == 2) {
                 checkBetting();
           }
