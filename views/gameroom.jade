@@ -454,6 +454,7 @@ block content
         numberToBet = parseInt(betting_id);
         amountbet = parseInt(amount_bet);
         currentMoney = parseInt(#{balance});
+        winningNumber = winning_number;
 
         if(currentMoney<=0 || currentMoney-amountbet<=0){
           alert("Sorry, you cannot bet! Please add some credit");
