@@ -152,6 +152,6 @@ var timer = setInterval(function () {
     console.log("Roulette: players update your scores");
     place_bets = 0;
   }
-}, 45000);
+}, 20000);
 
 module.exports = app;

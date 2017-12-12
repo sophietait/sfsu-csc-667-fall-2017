@@ -1,5 +1,5 @@
 var socket = io();
-var place_bets = -1;
+var place_bets = 0;
 var winning_number = -1;
 //var betting_id_array = [-1,-1,-1,-1,-1];
 //var amount_bet_array = [0,0,0,0,0];
@@ -23,17 +23,17 @@ function spinning(winning_nnn){
 function startplayerturn(){
   no_spinning();
   document.getElementById('disablebettinguser').style.display="none";  
+  document.getElementById('alertupdates').value = "Now it is your turn!";
   document.getElementById('startturn').style.display="block";
   startTimer();
   setTimeout(function(){
     document.getElementById('startturn').style.display="none";
-    //document.getElementById('endturn').style.display="block";
-    //no_spinning();    
     }, 2000);
   setTimeout(function(){
     document.getElementById('startturn').style.display="none";
+    document.getElementById('alertupdates').value = "Your turn just finished!";    
     document.getElementById('endturn').style.display="block";
-    }, 30000);
+    }, 15000);
 }
 
 function disablebetting(){
@@ -62,47 +62,3 @@ function startPolling() {
       socket.emit('gameroom status poll', place_bets);
     }, 1000);
 }
-
-/*
-socket.on('betting credit', function(bal){
-    console.log("CREDIT UPDATED FROM THE BETTING RESULTS");
-    location.reload();
-});
-
-socket.on('chat message', function(msg) {
-    console.log("message received");
-    $('#messages-area').append($('<li>').text(msg));
-});
-
-
-socket.on('current winning number', function(msg) {
-    console.log("winning number received received");
-    winning_number=msg;
-    alert("Winning number: "+winning_number);
-    spinning(winning_number);
-});
-
-socket.on('gameroom status update', function(value) {    
-    place_bets = value;
-    alert("place bets is: "+place_bets);
-    if(place_bets == 0) {
-        // allow player to play game
-        startplayerturn();
-        // here we need to set a timer interval to 1 minute
-    } else if(place_bets == 1) {
-        // disable the roulette table
-        // I DONT KNOW HOW TO DO THIS
-        disablebetting();
-        // spin the wheel
-        socket.emit('get winning number', winning_number);
-    } else if(place_bets == 2) {
-        // get winning number from server
-        // fetchWinningNumber();
-    } else if(place_bets == 3) {
-        // calculate player score
-        // call my cool function!
-        checkBetting();
-    }
-    console.log("gameroom status update " + value);  
-});
-*/

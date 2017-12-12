@@ -54,7 +54,7 @@ p { margin: 0; }
 	right: 24px;
 	position: fixed;
 	width: 300px;
-	display:none;
+	display:block;
 }
 
 #closed-chat header {
@@ -71,6 +71,7 @@ p { margin: 0; }
 	right: 24px;
 	position: fixed;
 	width: 300px;
+	display: none;
 }
 
 #live-chat header {

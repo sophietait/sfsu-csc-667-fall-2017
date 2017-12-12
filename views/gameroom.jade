@@ -7,6 +7,8 @@ block content
       h1(style='color:white') Welcome #{username}!
       h2(style='color:white') YOUR BALANCE IS $#{balance}
   .roulette-second-header
+    .alertupdate
+      input#alertupdates(type='text', value='')
     span#player-timer()
     a(href='addcredit')
       input(type='button', value='Add credit')
@@ -404,7 +406,7 @@ block content
         //modal4.style.display = "none";
       }
     }
-    document.getElementById('player-timer').innerHTML = "00:" + 30;
+    document.getElementById('player-timer').innerHTML = "00:" + 15;
 
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
@@ -417,7 +419,7 @@ block content
   script.
 
       var socket = io();
-      var place_bets = -1;
+      var place_bets = 0;
       var winning_number = -1;
       var betting_id=-1;
       var amount_bet=-1;
@@ -437,7 +439,8 @@ block content
         var bett = parseInt(#{balance}) - parseInt(quantity);
         if(parseInt(quantity) < 0 || bett < 0){
           quantity = 0;
-          alert("Your amount of money is negative or not valid!")  
+          document.getElementById('alertupdates').value = "Your amount of money is negative or not valid!";
+          //alert("Your amount of money is negative or not valid!");  
         }
         modal.style.display = "none";
         document.getElementById('amountbet').value="";
@@ -457,10 +460,12 @@ block content
         winningNumber = winning_number;
 
         if(currentMoney<=0 || currentMoney-amountbet<=0){
-          alert("Sorry, you cannot bet! Please add some credit");
+          document.getElementById('alertupdates').value = "Sorry, you cannot bet! Please add some credit";
+          //alert("Sorry, you cannot bet! Please add some credit");
         }
         else if(numberToBet == -1){
-          alert("You have not bet to any number!!");
+          document.getElementById('alertupdates').value = "You have not bet to any number!!";
+          //alert("You have not bet to any number!!");
         }
         else{
           var ii;
@@ -519,9 +524,6 @@ block content
                 }
                 break;
             case 88: //even
-                alert("Winning number was: "+winningNumber);
-                alert(winningNumber%2==0);
-                alert("Number to bet: "+numberToBet);
                 if(winningNumber%2==0){
                   currentMoney += amountbet;
                 }
@@ -609,14 +611,13 @@ block content
 
         //update the credit amount of player!!
         //alert("Your new current balance is: "+currentMoney);
+        document.getElementById('alertupdates').value = "Your new current balance is: "+currentMoney;
         socket.emit('new balance value', currentMoney, "#{username}");
       }
 
-
-
       socket.on('betting credit', function(bal){
           console.log("CREDIT UPDATED FROM THE BETTING RESULTS");
-          location.reload();
+          //location.reload();
       });
 
       socket.on('chat message', function(msg) {
@@ -631,41 +632,15 @@ block content
           spinning(winning_number);
       });
 
-      socket.on('gameroom status update', function(value) {    
-          
-          /*
-          startplayerturn();
-          setTimeout(function(){
-            socket.emit('get winning number', winning_number);
-          }, 63000);
-          setTimeout(function(){
-            checkBetting();
-          }, 70000);
-          */
-
-        
+      socket.on('gameroom status update', function(value) {            
           place_bets = value;
-          //alert("place bets is: "+place_bets);
           if(place_bets == 0) {
-              // allow player to play game
               startplayerturn();
-              // here we need to set a timer interval to 1 minute
           } else if(place_bets == 1) {
-              // disable the roulette table
-              // I DONT KNOW HOW TO DO THIS
-              //disablebetting();
-              // spin the wheel
-
-              socket.emit('get winning number', winning_number);
-
-              // socket.emit('get winning number', winning_number);
-          
+              reestartTimer();
+              socket.emit('get winning number', winning_number);          
           } else if(place_bets == 2) {
-              // calculate player score
-              // call my cool function!
                 checkBetting();
-              //checkBetting();
-              //place_bets = -1;
           }
           console.log("gameroom status update " + value);  
       });
