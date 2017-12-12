@@ -2,7 +2,7 @@ extends layout
 
 block content
   .roulette-header
-    img(src='images/r_logo.png', width='300px', onload='spinning()')
+    img(src='images/r_logo.png', width='300px' onload='startPolling()')
     .userandbalance
       h1(style='color:white') Welcome #{username}!
       h2(style='color:white') YOUR BALANCE IS $#{balance}
@@ -13,7 +13,7 @@ block content
     a(href='gamelobby')
       input(type='button', value='Back')
   .background-gameroom
-    img.image-roulette(src='images/rou.png', onclick='spinning()')
+    img.image-roulette(src='images/rou.png')
     img.image-roulette-spin(src='images/rou.png')
     .tableroulette
       table
@@ -389,6 +389,8 @@ block content
       .modal-turn-header
         h2 Your turn ended!
 
+  #disablebettinguser.modal
+  
   script.
     var modal = document.getElementById('myModal');
     var modal2 = document.getElementById('winning');
@@ -399,7 +401,7 @@ block content
         modal.style.display = "none";
         modal2.style.display = "none";
         modal3.style.display = "none";
-        modal4.style.display = "none";
+        //modal4.style.display = "none";
       }
     }
     document.getElementById('player-timer').innerHTML = "00:" + 60;
@@ -407,53 +409,266 @@ block content
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+  script(src='//code.jquery.com/jquery-1.11.3.min.js')
+  script(src='/socket.io/socket.io.js')
   script(src='script/roulette.js')
   script(src='script/table.js')
-  script(src='/socket.io/socket.io.js')
-  script(src='//code.jquery.com/jquery-1.11.3.min.js')
+  script(src='script/gamelogic.js')
   script.
-    var socket = io();
-    var place_bets = 0;
-    var winning_number = -1;
-    function sendMessageChat(event) {
-      if (event.keyCode == 13) {
-        if($('#chatSending').val()!=""){
-          var player="#{username}"+": "+$('#chatSending').val();
-          socket.emit('new message', player);
-          $('#chatSending').val('');
+
+      var socket = io();
+      var place_bets = -1;
+      var winning_number = -1;
+      var betting_id=-1;
+      var amount_bet=-1;
+
+      function sendMessageChat(event) {
+        if (event.keyCode == 13) {
+          if($('#chatSending').val()!=""){
+            var player="#{username}"+": "+$('#chatSending').val();
+            socket.emit('new message', player);
+            $('#chatSending').val('');
+          }
         }
       }
-    }
 
-    function startPolling() {
-      var interval = setInterval(function () {
-        socket.emit('gameroom status poll', place_bets);
-      }, 500);
-    }
-
-    function fetchWinningNumber() {
-      socket.emit('get winning number', winning_number);
-    }
-    socket.on('chat message', function(msg) {
-        console.log("message received");
-        $('#messages-area').append($('<li>').text(msg));
-    });
-    socket.on('gameroom status update', function(value) {
-        place_bets = value;
-        if(place_bets == 0) {
-          // allow player to play game
-        } else if(place_bets == 0) {
-          // disable the roulette table and
-          // spin the wheel
-        } else if(place_bets == 3) {
-          // get winning number from server
-          fetchWinningNumber();
-        } else if(place_bets == 4) {
-          // calculate player score
+      function getBettingQuantity(){
+        var quantity = document.getElementById('amountbet').value;
+        var bett = parseInt(#{balance}) - parseInt(quantity);
+        if(parseInt(quantity) < 0 || bett < 0){
+          quantity = 0;
+          alert("Your amount of money is negative or not valid!")  
         }
-        console.log("gameroom status update " + value);
-    });
-    socket.on('gameroom status update', function(value) {
-        winning_number = value;
-        console.log("gameroom winning number " + winning_number);
-    });
+        modal.style.display = "none";
+        document.getElementById('amountbet').value="";
+        amount_bet = quantity;
+      }
+
+      function openBettingModal(numberToBet){
+        var modal = document.getElementById('myModal');
+        modal.style.display = "block";
+        betting_id=numberToBet;
+      }
+
+      function checkBetting(){
+        numberToBet = parseInt(betting_id);
+        amountbet = parseInt(amount_bet);
+        currentMoney = parseInt(#{balance});
+
+        if(currentMoney<=0 || currentMoney-amountbet<=0){
+          alert("Sorry, you cannot bet! Please add some credit");
+        }
+        else if(numberToBet == -1){
+          alert("You have not bet to any number!!");
+        }
+        else{
+          var ii;
+          for(ii=0; ii<37; ii++){
+            if(numberToBet==ii){
+              if(winningNumber==ii){
+                currentMoney += amountbet*35;
+              }
+              else{
+                currentMoney -= amountbet;
+              }
+            }
+          }
+
+          switch (numberToBet) {
+            case 0:
+              if(winningNumber==0){
+                currentMoney += amountbet*4;
+              }
+              else{
+                currentMoney -= amountbet;
+              }
+              break;
+            case 50: //red
+                if(winningNumber== 1 || winningNumber== 3 || winningNumber== 5 ||
+                  winningNumber== 7 || winningNumber== 9 || winningNumber== 12 ||
+                  winningNumber== 14 || winningNumber== 16 || winningNumber== 18 ||
+                  winningNumber== 19 || winningNumber== 21 || winningNumber== 23 ||
+                  winningNumber== 25 || winningNumber== 27 || winningNumber== 30 ||
+                  winningNumber== 32 || winningNumber== 34 || winningNumber== 36){
+                    currentMoney += amountbet;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 60://black
+                if(winningNumber== 2 || winningNumber== 4 || winningNumber== 6 ||
+                  winningNumber== 8 || winningNumber== 10 || winningNumber== 11 ||
+                  winningNumber== 13 || winningNumber== 15 || winningNumber== 17 ||
+                  winningNumber== 20 || winningNumber== 22 || winningNumber== 24 ||
+                  winningNumber== 26 || winningNumber== 28 || winningNumber== 29 ||
+                  winningNumber== 31 || winningNumber== 33 || winningNumber== 35){
+                    currentMoney += amountbet;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 77://odd
+                if(winningNumber%2!=0){
+                  currentMoney += amountbet;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 88: //even
+                if(winningNumber%2==0){
+                  currentMoney += amountbet;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 37://2 to 1
+                if(winningNumber== 1 || winningNumber== 4 || winningNumber== 7 ||
+                  winningNumber== 10 || winningNumber== 13 || winningNumber== 16 ||
+                  winningNumber== 19 || winningNumber== 22 || winningNumber== 25 ||
+                  winningNumber== 28 || winningNumber== 31 || winningNumber== 34){
+                    currentMoney += amountbet*2;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 38://2 to 1
+                if(winningNumber== 2 || winningNumber== 5 || winningNumber== 8 ||
+                  winningNumber== 11 || winningNumber== 14 || winningNumber== 17 ||
+                  winningNumber== 20 || winningNumber== 23 || winningNumber== 26 ||
+                  winningNumber== 29 || winningNumber== 32 || winningNumber== 35){
+                    currentMoney += amountbet*2;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 39://2 to 1
+                if(winningNumber== 3 || winningNumber== 6 || winningNumber== 9 ||
+                  winningNumber== 12 || winningNumber== 15 || winningNumber== 18 ||
+                  winningNumber== 21 || winningNumber== 24 || winningNumber== 27 ||
+                  winningNumber== 30 || winningNumber== 33 || winningNumber== 36){
+                    currentMoney += amountbet*2;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 112://first 12: 1-12
+                if(0 < winningNumber && winningNumber < 13){
+                  currentMoney += amountbet*2;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 212://2nd 12: 13-24
+                if(12 < winningNumber && winningNumber < 25){
+                  currentMoney += amountbet*2;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 312://3rd 12: 25-36
+                if(24 < winningNumber && winningNumber < 37){
+                  currentMoney += amountbet*2;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 118://1-18
+                if(0 < winningNumber && winningNumber < 19){
+                  currentMoney += amountbet;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            case 1936://19-36
+                if(18 < winningNumber && winningNumber < 37){
+                  currentMoney += amountbet;
+                }
+                else{
+                  currentMoney -= amountbet;
+                }
+                break;
+            default:
+                console.log("this shouldn't happen!");
+            }
+        }
+
+        //update the credit amount of player!!
+        alert("Your new current balance is: "+currentMoney);
+        socket.emit('new balance value', currentMoney, "#{username}");
+      }
+
+
+
+      socket.on('betting credit', function(bal){
+          console.log("CREDIT UPDATED FROM THE BETTING RESULTS");
+          location.reload();
+      });
+
+      socket.on('chat message', function(msg) {
+          console.log("message received");
+          $('#messages-area').append($('<li>').text(msg));
+      });
+
+
+      socket.on('current winning number', function(msg) {
+          console.log("winning number received received");
+          winning_number=msg;
+          alert("Winning number: "+winning_number);
+          spinning(winning_number);
+      });
+
+      socket.on('gameroom status update', function(value) {    
+          
+          /*
+          startplayerturn();
+          setTimeout(function(){
+            socket.emit('get winning number', winning_number);
+          }, 63000);
+          setTimeout(function(){
+            checkBetting();
+          }, 70000);
+          */
+
+        
+          place_bets = value;
+          alert("place bets is: "+place_bets);
+          if(place_bets == 0) {
+              // allow player to play game
+              startplayerturn();
+              // here we need to set a timer interval to 1 minute
+          } else if(place_bets == 1) {
+              // disable the roulette table
+              // I DONT KNOW HOW TO DO THIS
+              //disablebetting();
+              // spin the wheel
+
+             setTimeout(function(){
+              socket.emit('get winning number', winning_number);
+              }, 5000);
+
+              // socket.emit('get winning number', winning_number);
+          } else if(place_bets == 2) {
+              // get winning number from server
+              // fetchWinningNumber();
+          } else if(place_bets == 3) {
+              // calculate player score
+              // call my cool function!
+              setTimeout(function(){
+                checkBetting();
+                }, 5000);
+              //checkBetting();
+              //place_bets = -1;
+          }
+          console.log("gameroom status update " + value);  
+      });

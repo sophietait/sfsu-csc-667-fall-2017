@@ -30,8 +30,15 @@ function startTimer() {
   var presentTime = document.getElementById('player-timer').innerHTML;
   var timeArray = presentTime.split(/[:]+/);
   var s = checkSecond((timeArray[1] - 1));
+  if(s<0){
+    reestartTimer();
+  }
   document.getElementById('player-timer').innerHTML = "00:" + s;
   setTimeout(startTimer, 1000);
+  }
+
+  function reestartTimer(){
+    document.getElementById('player-timer').innerHTML = "00:" + 60;
   }
 
   function checkSecond(sec) {
@@ -40,6 +47,7 @@ function startTimer() {
     return sec;
   }
 
+  /*
 function spinning(){
   document.getElementsByClassName("image-roulette")[0].style.display="none";
   document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
@@ -65,23 +73,16 @@ function no_spinning(){
   document.getElementsByClassName("image-roulette-spin")[0].style.display="none";
   document.getElementsByClassName("image-roulette")[0].style.display="inline-block";
 }
-
+*/
 function sendForgotPassword() {
   alert("The email has been sent correctly. Please check your email");
 }
-
-function openWinningNumberModal(){
-  var modal = document.getElementById('winning');
-  modal.style.display = "block";
-  var w = getRandomNumber();
-  document.getElementById('winningNumber').value = w;
-}
-
+/*
 function openBettingModal(numberToBet){
     var modal = document.getElementById('myModal');
     modal.style.display = "block";
 }
-
+*/
 function closeBettingModal(){
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
@@ -96,18 +97,20 @@ function closeLeaderModal(){
   var modal = document.getElementById('leaderboard');
   modal.style.display = "none";
 }
-
+/*
 function getBettingQuantity(){
   var quantity = document.getElementById('amountbet').value;
   modal.style.display = "none";
   document.getElementById('amountbet').value="";
   return quantity;
 }
-
+*/
 function getRandomNumber(){
     var winningNumber=Math.floor(Math.random() * 36);
     return winningNumber;
 }
+
+/*
 
 function checkBetting(numberToBet){
     var amountbet=getBettingQuantity();
@@ -263,3 +266,4 @@ function checkBetting(numberToBet){
     //here we should update the credit amount of every player!!!!!!!!
 
   }
+  */

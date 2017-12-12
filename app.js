@@ -115,6 +115,18 @@ app.io.on("connection", function(socket) {
     app.io.emit("creditt", bal);
   });
 
+  socket.on("new balance value", function(bal, user) {
+    var Player = require('./models/player');
+    Player.findOne({ where: { username: user }}).then(function (player) {
+      if (player) {
+        player.updateAttributes({
+          balance: bal
+        });
+      }
+    });
+    app.io.emit("betting credit", bal);
+  });
+
   socket.on('gameroom status poll', function(status) {
     if(status != place_bets) {
       console.log(status + " != " + place_bets);
@@ -123,7 +135,8 @@ app.io.on("connection", function(socket) {
   });
 
   socket.on('get winning number', function(number) {
-    console.log("send winning number to client");
+    winning_number = Math.round((Math.random() * 36));
+    console.log("send winning number to client: "+winning_number);    
     app.io.emit('current winning number', winning_number);
   });
 });
@@ -136,34 +149,12 @@ var timer = setInterval(function () {
     console.log("Roulette: hold your bets");
     place_bets = 2;
   } else if(place_bets == 2) {
-    winning_number = Math.round((Math.random() * 36));
     console.log("Roulette: winning number is -------- " + winning_number);
-
-    /*
-    function spinning(winning_num){
-      document.getElementsByClassName("image-roulette")[0].style.display="none";
-      document.getElementsByClassName("image-roulette-spin")[0].style.display="inline-block";
-      setTimeout(function(){
-        openWinningNumberModal(winning_num);
-      }, 3000);
-    }
-
-    function openWinningNumberModal(winning_num){
-      var modal = document.getElementById('winning');
-      modal.style.display = "block";
-      document.getElementById('winningNumber').value = winning_num;
-    }
-
-    function no_spinning(){
-      document.getElementsByClassName("image-roulette-spin")[0].style.display="none";
-      document.getElementsByClassName("image-roulette")[0].style.display="inline-block";
-    }
-*/
     place_bets = 3;
   } else if(place_bets == 3) {
     console.log("Roulette: players update your scores");
     place_bets = 0;
   }
-}, 10000);
+}, 30000);
 
 module.exports = app;
