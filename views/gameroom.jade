@@ -404,7 +404,7 @@ block content
         //modal4.style.display = "none";
       }
     }
-    document.getElementById('player-timer').innerHTML = "00:" + 60;
+    document.getElementById('player-timer').innerHTML = "00:" + 30;
 
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
@@ -518,6 +518,9 @@ block content
                 }
                 break;
             case 88: //even
+                alert("Winning number was: "+winningNumber);
+                alert(winningNumber%2==0);
+                alert("Number to bet: "+numberToBet);
                 if(winningNumber%2==0){
                   currentMoney += amountbet;
                 }
@@ -624,7 +627,6 @@ block content
       socket.on('current winning number', function(msg) {
           console.log("winning number received received");
           winning_number=msg;
-          alert("Winning number: "+winning_number);
           spinning(winning_number);
       });
 
@@ -642,7 +644,7 @@ block content
 
         
           place_bets = value;
-          alert("place bets is: "+place_bets);
+          //alert("place bets is: "+place_bets);
           if(place_bets == 0) {
               // allow player to play game
               startplayerturn();
@@ -653,20 +655,14 @@ block content
               //disablebetting();
               // spin the wheel
 
-             setTimeout(function(){
               socket.emit('get winning number', winning_number);
-              }, 5000);
 
               // socket.emit('get winning number', winning_number);
+          
           } else if(place_bets == 2) {
-              // get winning number from server
-              // fetchWinningNumber();
-          } else if(place_bets == 3) {
               // calculate player score
               // call my cool function!
-              setTimeout(function(){
                 checkBetting();
-                }, 5000);
               //checkBetting();
               //place_bets = -1;
           }

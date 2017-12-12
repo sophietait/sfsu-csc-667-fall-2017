@@ -29,11 +29,11 @@ function startplayerturn(){
     document.getElementById('startturn').style.display="none";
     //document.getElementById('endturn').style.display="block";
     //no_spinning();    
-    }, 3000);
+    }, 2000);
   setTimeout(function(){
     document.getElementById('startturn').style.display="none";
     document.getElementById('endturn').style.display="block";
-    }, 60000);
+    }, 30000);
 }
 
 function disablebetting(){

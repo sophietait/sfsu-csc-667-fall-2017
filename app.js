@@ -149,12 +149,9 @@ var timer = setInterval(function () {
     console.log("Roulette: hold your bets");
     place_bets = 2;
   } else if(place_bets == 2) {
-    console.log("Roulette: winning number is -------- " + winning_number);
-    place_bets = 3;
-  } else if(place_bets == 3) {
     console.log("Roulette: players update your scores");
     place_bets = 0;
   }
-}, 30000);
+}, 45000);
 
 module.exports = app;
