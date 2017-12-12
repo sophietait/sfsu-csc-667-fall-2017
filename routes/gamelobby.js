@@ -8,15 +8,30 @@ router.get('/', function(req, res, next) {
     console.log("Session exists.");
     var myBalance;
     var Player = require('../models/player');
+    var currentPlayerUsername = "";
+    var currentPlayerBalance = "";
+
     Player.findOne({ where: { username: req.session.player.username }})
     .then(function (player) {
       if (player) {
         myBalance=player.balance
       }
-      res.render('gamelobby', { 
+      currentPlayerUsername = req.session.player.username;
+      currentPlayerBalance = myBalance;
+    });
+
+    Player.findAll({attributes: ['username', 'balance']})
+    .then(function (player) {
+      var displayStr = "";
+      for(var user of player) {
+        displayStr += 'Player ' + user.username + ', Balance ' + user.balance + '\r\r\n\n';
+
+      }
+      res.render('gamelobby', {
         title: 'Roulette',
-        username: req.session.player.username,      
-        balance: myBalance
+        leaderboard: displayStr,
+        username: currentPlayerUsername,
+        balance: currentPlayerBalance
        });
     });
   } else {

@@ -33,7 +33,7 @@ block content
         span.close(onclick='closeLeaderModal()') ×
         h2 Current players and their balance
       .modal-leaderboard-body
-        p Player: #{username} Balance: #{balance}
+        p #{leaderboard}
 
   #closed-chat-lobby
     header.clearfix
@@ -66,7 +66,7 @@ block content
   script.
     var socket = io();
     function sendMessageChatLobby(event){
-      if (event.keyCode == 13) {        
+      if (event.keyCode == 13) {
         if($('#chatSendingLobby').val()!=""){
           var player="#{username}"+": "+$('#chatSendingLobby').val();
           socket.emit('new message lobby', player);
@@ -74,9 +74,8 @@ block content
         }
       }
     }
-    
+
     socket.on('chat message lobby', function(msg){
         console.log("message received from lobby");
         $('#messages-area-lobby').append($('<li>').text(msg));
     });
-    
