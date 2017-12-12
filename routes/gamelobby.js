@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
     .then(function (player) {
       var displayStr = "";
       for(var user of player) {
-        displayStr += 'Player ' + user.username + ', Balance ' + user.balance + '\r\r\n\n';
+        displayStr += 'Player: ' + user.username + ', Balance: ' + user.balance + '\r\r\n\n';
 
       }
       res.render('gamelobby', {
