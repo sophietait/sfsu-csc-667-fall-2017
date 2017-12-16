@@ -136,7 +136,7 @@ app.io.on("connection", function(socket) {
 
   socket.on('get winning number', function(number) {
     winning_number = Math.round((Math.random() * 36));
-    console.log("send winning number to client: "+winning_number);    
+    console.log("send winning number to client: "+winning_number);
     app.io.emit('current winning number', winning_number);
   });
 });
@@ -160,13 +160,12 @@ if(place_bets == 0) {
 }
 */
 
-
+/*
 var timer = setInterval(function () {
   if(place_bets == 0) {
     console.log("Roulette: place your bets");
     place_bets = 1;
-  }
-  else if(place_bets == 1) {
+  } else if(place_bets == 1) {
     console.log("Roulette: hold your bets");
     place_bets = 2;
   } else if(place_bets == 2) {
@@ -174,6 +173,27 @@ var timer = setInterval(function () {
     place_bets = 0;
   }
 }, 20000);
+*/
+
+gameLoop();
+setInterval(function () {
+  gameLoop();
+}, 28000);
+
+function gameLoop() {
+  console.log("Roulette: place your bets");
+  place_bets = 0;
+
+  setTimeout(function () {
+    console.log("Roulette: hold your bets");
+    place_bets = 1;
+  }, 20000);
+
+  setTimeout(function () {
+    console.log("Roulette: players update your scores");
+    place_bets = 2;
+  }, 25000);
+}
 
 /*
 var timer2 = setInterval(function () {
