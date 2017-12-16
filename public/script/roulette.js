@@ -26,27 +26,38 @@ function closechatLobby(){
   document.getElementById("live-chat-lobby").style.display="none";
 }
 
-function startTimer() {
-  var presentTime = document.getElementById('player-timer').innerHTML;
-  var timeArray = presentTime.split(/[:]+/);
-  var s = checkSecond((timeArray[1] - 1));
-  document.getElementById('player-timer').innerHTML = "00:" + s;
-  setTimeout(startTimer, 1000);
-  }
 
-  function reestartTimer(){
-    document.getElementById('player-timer').innerHTML = "00:" + 15;
+var c = 15;
+var t;
+var timer_is_on = 0;
+
+function timedCount() {
+	if(c<10){
+    c = "0"+ c;
   }
+  //document.getElementById("txt").value = "00:"+ c;
+  document.getElementById('player-timer').innerHTML = "00:" + c;
+  c = c - 1;
+  t = setTimeout(function(){ timedCount() }, 1000);
+  if(c<0){
+    clearTimeout(t);
+  	timer_is_on = 0;
+  }
+}
+
+function startTimer() {
+	c = 15;
+  if (!timer_is_on) {
+    timer_is_on = 1;
+    timedCount();
+  }
+}
 
   function checkSecond(sec) {
     if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
     if (sec < 0){ sec="00";}
     return sec;
   }
-
-function sendForgotPassword() {
-  alert("The email has been sent correctly. Please check your email");
-}
 
 function closeBettingModal(){
     var modal = document.getElementById('myModal');

@@ -50,11 +50,6 @@ function openWinningNumberModal(winning_nnn){
   var modal = document.getElementById('winning');
   modal.style.display = "block";
   document.getElementById('winningNumber').value = winning_nnn;
-  /*
-  for(int ii==){
-
-  }
-  */
 }
 
 function startPolling() {

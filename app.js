@@ -22,7 +22,7 @@ var gameroom = require('./routes/gameroom');
 var rules = require('./routes/rules');
 var logout = require('./routes/logout');
 
-var place_bets = 0;
+var place_bets = 2;
 var winning_number = -1;
 
 var app = express();
@@ -141,11 +141,32 @@ app.io.on("connection", function(socket) {
   });
 });
 
+/*
+if(place_bets == 0) {
+  var timer = setInterval(function () {
+    console.log("Roulette: place your bets");
+    place_bets = 1;
+  }, 20000);
+} else if(place_bets == 1) {
+  var timer2 = setInterval(function () {
+    console.log("Roulette: hold your bets");
+    place_bets = 2;
+  }, 15000);
+} else if(place_bets == 2) {
+  var timer3 = setInterval(function () {
+  console.log("Roulette: players update your scores");
+  place_bets = 0;
+  }, 5000);
+}
+*/
+
+
 var timer = setInterval(function () {
   if(place_bets == 0) {
     console.log("Roulette: place your bets");
     place_bets = 1;
-  } else if(place_bets == 1) {
+  }
+  else if(place_bets == 1) {
     console.log("Roulette: hold your bets");
     place_bets = 2;
   } else if(place_bets == 2) {
@@ -153,5 +174,22 @@ var timer = setInterval(function () {
     place_bets = 0;
   }
 }, 20000);
+
+/*
+var timer2 = setInterval(function () {
+  if(place_bets == 1) {
+    console.log("Roulette: hold your bets");
+    place_bets = 2;
+  }
+}, 35000);
+
+
+var timer3 = setInterval(function () {
+  if(place_bets == 2) {
+    console.log("Roulette: players update your scores");
+    place_bets = 0;
+  }
+}, 40000);
+*/
 
 module.exports = app;
