@@ -7,32 +7,40 @@ router.get('/', function(req, res, next) {
   res.render('forgotpassword', { title: 'Forgot password' });
 });
 
-router.post('/send', function(req, res, next){
-  var transport = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: 'leiruss8@gmail.com',
-      pass: 'll'
-    }
+router.post('/', function(req, res, next){
+  console.log("ha ha ha");
+  var smtpTransport = nodemailer.createTransport("SMTP",{
+      service: "Gmail",
+      auth: {
+          user: "roulette667@gmail.com",
+          pass: "johnrob667"
+      }
   });
-  var mailOp = {
-    from: 'Roulette 667 - <roulette667@gmail.com>',
-    to: 'laturkaraishvaria@gmail.com',
-    subject: 'Roulette - Forgot your password?',
-    text: 'Have you forgotten your password of Roulette? Your password is: ',
-    html: '<h2> Your new password is: </h2>'
-  };
-  transport.sendMail(mailOp, function (error, info){
-    if(error){
-      console.log('Forgot password: Email could not be sent! \n' + error);
-    }
-    else{
-      console.log('Forgot password: Email sent successfully! '+ info.response );
-      alert("Email sent successfully!");
-      res.redirect('/index');
-    }
-  });
-});
 
+  // setup e-mail data with unicode symbols
+  var mailOptions = {
+      from: "Roulette <roulette667@gmail.com>", // sender address
+      to: "laturkaraishvaria@gmail.com", // list of receivers
+      subject: "Roulette-Forgot password", // Subject line
+      text: "Roulette", // plaintext body
+      html: "<b>Here is your new password -"1234"</b>" // html body
+  }
+
+  // send mail with defined transport object
+  smtpTransport.sendMail(mailOptions, function(error, response){
+      if(error){
+          console.log(error);
+          res.redirect('/forgotpassword');
+      }else{
+          console.log("Message sent: " + response.message);
+          res.redirect('/index');
+      }
+
+      // if you don't want to use this transport object anymore, uncomment following line
+      //smtpTransport.close(); // shut down the connection pool, no more messages
+  });
+
+
+});
 
 module.exports = router;
