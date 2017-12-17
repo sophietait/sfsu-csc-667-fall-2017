@@ -23,7 +23,7 @@ router.post('/', function(req, res, next){
       to: "laturkaraishvaria@gmail.com", // list of receivers
       subject: "Roulette-Forgot password", // Subject line
       text: "Roulette", // plaintext body
-      html: "<b>Here is your new password -"1234"</b>" // html body
+      html: "<b>Here is your new password -1234</b>" // html body
   }
 
   // send mail with defined transport object
