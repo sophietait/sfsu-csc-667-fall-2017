@@ -1,8 +1,6 @@
 var socket = io();
 var place_bets = 0;
 var winning_number = -1;
-//var betting_id_array = [-1,-1,-1,-1,-1];
-//var amount_bet_array = [0,0,0,0,0];
 
 var betting_id=-1;
 var amount_bet=-1;

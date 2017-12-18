@@ -444,7 +444,6 @@ block content
               if(parseInt(quantity) < 0 || bett < 0){
                 quantity = 0;
                 document.getElementById('alertupdates').value = "Your amount of money is negative or not valid!";
-                //alert("Your amount of money is negative or not valid!");
               }
               modal.style.display = "none";
               document.getElementById('amountbet').value="";
@@ -454,13 +453,11 @@ block content
                   break;
                 }
               }
-              //amount_bet = quantity;
             }
 
             function openBettingModal(numberToBet){
               var modal = document.getElementById('myModal');
               modal.style.display = "block";
-              //betting_id=betting_array[jj];
               for(jj=0; jj<5; jj++){
                 if(betting_array[jj]==-1){
                   betting_array[jj]=numberToBet;
@@ -470,25 +467,18 @@ block content
             }
 
             function checkBetting(){
-              //var numberToBet = parseInt(betting_id);
-              //var amount_bet = parseInt(amount_bet);
               var currentMoney = parseInt($("#balanceupdating").html());
               winningNumber = winning_number;
 
               for(jj=0; jj<5; jj++){
-                //alert("Betting id: "+betting_array[jj]+" of iteration "+jj);
-                //alert("Betting amount: "+amount_array[jj]+" of iteration "+jj);
                 if(currentMoney<=0 || currentMoney-parseInt(amount_array[jj])<=0){
                   document.getElementById('alertupdates').value = "Sorry, you cannot bet! Please add some credit";
-                  //alert("Sorry, you cannot bet! Please add some credit");
                 }
                 else if(betting_array[jj] == -1){
                   document.getElementById('alertupdates').value = "You have not bet to any number!!";
-                  //alert("You have not bet to any number!!");
                 }
                 else if(amount_array[jj] == -1){
                   document.getElementById('alertupdates').value = "You have not bet to any money!!";
-                  //alert("You have not bet to any money!!");
                 }
                 else{
                   var ii;
@@ -631,8 +621,8 @@ block content
                         console.log("this shouldn't happen!");
                     }
                 }
-                //betting_array[jj]=-1;
-                //amount_array[jj]=-1;
+                betting_array[jj]=-1;
+                amount_array[jj]=-1;
               }
 
               for(ii=0; ii<5; ii++){
@@ -647,7 +637,6 @@ block content
 
       socket.on('betting credit', function(bal, user){
           console.log("CREDIT UPDATED FROM THE BETTING RESULTS");
-          //location.reload();
           if("#{username}"==user){
             $("#balanceupdating").html(bal);
             //"{#balance}".innerHTML = bal;
