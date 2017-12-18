@@ -141,44 +141,10 @@ app.io.on("connection", function(socket) {
   });
 });
 
-/*
-if(place_bets == 0) {
-  var timer = setInterval(function () {
-    console.log("Roulette: place your bets");
-    place_bets = 1;
-  }, 20000);
-} else if(place_bets == 1) {
-  var timer2 = setInterval(function () {
-    console.log("Roulette: hold your bets");
-    place_bets = 2;
-  }, 15000);
-} else if(place_bets == 2) {
-  var timer3 = setInterval(function () {
-  console.log("Roulette: players update your scores");
-  place_bets = 0;
-  }, 5000);
-}
-*/
-
-/*
-var timer = setInterval(function () {
-  if(place_bets == 0) {
-    console.log("Roulette: place your bets");
-    place_bets = 1;
-  } else if(place_bets == 1) {
-    console.log("Roulette: hold your bets");
-    place_bets = 2;
-  } else if(place_bets == 2) {
-    console.log("Roulette: players update your scores");
-    place_bets = 0;
-  }
-}, 20000);
-*/
-
 gameLoop();
 setInterval(function () {
   gameLoop();
-}, 28000);
+}, 50000);
 
 function gameLoop() {
   console.log("Roulette: place your bets");
@@ -187,29 +153,12 @@ function gameLoop() {
   setTimeout(function () {
     console.log("Roulette: hold your bets");
     place_bets = 1;
-  }, 20000);
+  }, 38000);
 
   setTimeout(function () {
     console.log("Roulette: players update your scores");
     place_bets = 2;
-  }, 25000);
+  }, 47000);
 }
-
-/*
-var timer2 = setInterval(function () {
-  if(place_bets == 1) {
-    console.log("Roulette: hold your bets");
-    place_bets = 2;
-  }
-}, 35000);
-
-
-var timer3 = setInterval(function () {
-  if(place_bets == 2) {
-    console.log("Roulette: players update your scores");
-    place_bets = 0;
-  }
-}, 40000);
-*/
 
 module.exports = app;

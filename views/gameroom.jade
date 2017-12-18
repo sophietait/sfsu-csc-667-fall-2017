@@ -9,7 +9,7 @@ block content
       h2(style='color:white; display:inline-block', id="balanceupdating") #{balance}
   .roulette-second-header
     .alertupdate
-      input#alertupdates(type='text', value='')
+      input#alertupdates(type='text', value='Loading... Wait until the game starts')
     span#player-timer()
     a(href='addcredit')
       input(type='button', value='Add credit')
@@ -385,7 +385,7 @@ block content
   #startturn.modal
     .modal-content
       .modal-turn-header
-        h2 Your turn just started! Please start betting. You have 15 seconds.
+        h2 Your turn just started! Please start betting. You have 30 seconds.
 
   #endturn.modal
     .modal-content
@@ -407,7 +407,7 @@ block content
         //modal4.style.display = "none";
       }
     }
-    document.getElementById('player-timer').innerHTML = "00:" + 15;
+    document.getElementById('player-timer').innerHTML = "00:" + 30;
 
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')

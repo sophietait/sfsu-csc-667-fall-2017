@@ -46,7 +46,7 @@ function timedCount() {
 }
 
 function startTimer() {
-	c = 15;
+	c = 30;
   if (!timer_is_on) {
     timer_is_on = 1;
     timedCount();
@@ -78,3 +78,18 @@ function getRandomNumber(){
     var winningNumber=Math.floor(Math.random() * 36);
     return winningNumber;
 }
+
+function openUserNotCreatedModal(){
+  document.getElementById("usernotcreated").style.display="block";
+  setTimeout(function(){
+    document.getElementById("usernotcreated").style.display="none";
+  }, 3000);
+}
+
+function openIncorrectUserModal(){
+  document.getElementById("incorrectuser").style.display="block";
+  setTimeout(function(){
+    document.getElementById("incorrectuser").style.display="none";
+  }, 3000);
+}
+

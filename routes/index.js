@@ -19,9 +19,11 @@ router.post('/', function(req, res) {
         Player.findOne({ where: { username: username } }).then(function (player) {
             if (!player) {
               console.log("login not successful");
+              //openUserNotCreatedModal();
               res.redirect('/index');
             } else if (!player.validPassword(password)) {
               console.log("incorrect password");
+              //openIncorrectUserModal();
               res.redirect('/index');
             } else {
               console.log("login successful");
