@@ -79,17 +79,3 @@ function getRandomNumber(){
     return winningNumber;
 }
 
-function openUserNotCreatedModal(){
-  document.getElementById("usernotcreated").style.display="block";
-  setTimeout(function(){
-    document.getElementById("usernotcreated").style.display="none";
-  }, 3000);
-}
-
-function openIncorrectUserModal(){
-  document.getElementById("incorrectuser").style.display="block";
-  setTimeout(function(){
-    document.getElementById("incorrectuser").style.display="none";
-  }, 3000);
-}
-
