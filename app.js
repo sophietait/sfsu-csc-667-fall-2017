@@ -144,7 +144,7 @@ app.io.on("connection", function(socket) {
 gameLoop();
 setInterval(function () {
   gameLoop();
-}, 60000);
+}, 55000);
 
 function gameLoop() {
   console.log("Roulette: place your bets");
@@ -153,12 +153,12 @@ function gameLoop() {
   setTimeout(function () {
     console.log("Roulette: hold your bets");
     place_bets = 1;
-  }, 50000);
+  }, 45000);
 
   setTimeout(function () {
     console.log("Roulette: players update your scores");
     place_bets = 2;
-  }, 55000);
+  }, 50000);
 }
 
 module.exports = app;
