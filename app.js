@@ -22,7 +22,7 @@ var gameroom = require('./routes/gameroom');
 var rules = require('./routes/rules');
 var logout = require('./routes/logout');
 
-var place_bets = 2;
+var place_bets = 0;
 var winning_number = -1;
 
 var app = express();

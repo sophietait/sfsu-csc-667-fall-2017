@@ -420,7 +420,7 @@ block content
   script.
 
       var socket = io();
-      var place_bets = 0;
+      var place_bets = 2;
       var winning_number = -1;
       var betting_id=-1;
       var amount_bet=-1;
@@ -631,9 +631,15 @@ block content
                         console.log("this shouldn't happen!");
                     }
                 }
-                betting_array[jj]=-1;
-                amount_array[jj]=-1;
+                //betting_array[jj]=-1;
+                //amount_array[jj]=-1;
               }
+
+              for(ii=0; ii<5; ii++){
+                betting_array[ii]=-1;
+                amount_array[ii]=-1;
+              }
+
               document.getElementById('alertupdates').value = "Your new current balance is: "+currentMoney;
               socket.emit('new balance value', currentMoney, "#{username}");
             }
