@@ -9,7 +9,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var passport = require('passport');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -48,9 +47,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   maxAge: 60000
-}))
-app.use(passport.initialize());
-app.use(passport.session());
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -141,7 +138,7 @@ app.io.on("connection", function(socket) {
   });
 });
 
-/*
+
 gameLoop();
 setInterval(function () {
   gameLoop();
@@ -161,8 +158,8 @@ function gameLoop() {
     place_bets = 2;
   }, 55000);
 }
-*/
 
+/*
 var timer = setInterval(function () {
   if(place_bets == 0) {
     console.log("Roulette: place your bets");
@@ -175,5 +172,5 @@ var timer = setInterval(function () {
     place_bets = 0;
   }
 }, 20000);
-
+*/
 module.exports = app;
