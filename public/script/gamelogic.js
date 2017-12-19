@@ -20,6 +20,7 @@ function spinning(winning_nnn){
 
 function startplayerturn(){
   no_spinning();
+  document.getElementById('endturn').style.display="none";
   document.getElementById('disablebettinguser').style.display="none";  
   document.getElementById('alertupdates').value = "Now it is your turn!";
   document.getElementById('startturn').style.display="block";
@@ -31,9 +32,6 @@ function startplayerturn(){
     document.getElementById('alertupdates').value = "Your turn just finished!";    
     document.getElementById('endturn').style.display="block";
     }, 31000);
-  setTimeout(function(){
-    document.getElementById('endturn').style.display="none";
-    }, 35000);
 }
 
 function no_spinning(){
