@@ -473,7 +473,7 @@ block content
               winningNumber = winning_number;
 
               for(jj=0; jj<5; jj++){
-                if(currentMoney<=0 || currentMoney-parseInt(amount_array[jj])<=0){
+                if(currentMoney<=0 || currentMoney-parseInt(amount_array[jj])<0){
                   document.getElementById('alertupdates').value = "Sorry, you cannot bet! Please add some credit";
                 }
                 else if(betting_array[jj] == -1){
