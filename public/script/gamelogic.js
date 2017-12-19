@@ -31,7 +31,7 @@ function startplayerturn(){
     document.getElementById('startturn').style.display="none";
     document.getElementById('alertupdates').value = "Your turn just finished!";    
     document.getElementById('endturn').style.display="block";
-    }, 32000);
+    }, 18000);
 }
 
 function no_spinning(){

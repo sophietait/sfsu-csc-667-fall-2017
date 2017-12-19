@@ -29,7 +29,7 @@ router.post('/', function(req, res, next){
       to: req.body.email,// list of receivers
       subject: "Roulette-Forgot password", // Subject line
       text: "Roulette", // plaintext body
-      html: "<b>Here is your new password - "+randomNewPassword // html body
+      html: "<b>Here is your new password - " + randomNewPassword // html body
   }
 
   Player.findOne({ where: { email: req.body.email } }).then(function (player) {

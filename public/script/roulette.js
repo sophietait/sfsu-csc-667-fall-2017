@@ -46,7 +46,7 @@ function timedCount() {
 }
 
 function startTimer() {
-	c = 30;
+	c = 15;
   if (!timer_is_on) {
     timer_is_on = 1;
     timedCount();
