@@ -142,7 +142,7 @@ app.io.on("connection", function(socket) {
 });
 
 
-/*gameLoop();
+gameLoop();
 setInterval(function () {
   gameLoop();
 }, 60000);
@@ -161,8 +161,8 @@ function gameLoop() {
     place_bets = 2;
   }, 55000);
 }
-*/
 
+/*
 var timer = setInterval(function () {
   if(place_bets == 0) {
     console.log("Roulette: place your bets");
@@ -175,5 +175,5 @@ var timer = setInterval(function () {
     place_bets = 0;
   }
 }, 33000);
-
+*/
 module.exports = app;

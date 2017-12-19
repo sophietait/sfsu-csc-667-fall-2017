@@ -27,7 +27,7 @@ function closechatLobby(){
 }
 
 
-var c = 15;
+var c = 30;
 var t;
 var timer_is_on = 0;
 
@@ -46,7 +46,7 @@ function timedCount() {
 }
 
 function startTimer() {
-	c = 15;
+	c = 30;
   if (!timer_is_on) {
     timer_is_on = 1;
     timedCount();

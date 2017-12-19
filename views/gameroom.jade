@@ -385,7 +385,7 @@ block content
   #startturn.modal
     .modal-content
       .modal-turn-header
-        h2 Your turn just started! Please start betting. You have 15 seconds.
+        h2 Your turn just started! Please start betting. You have 30 seconds.
 
   #endturn.modal
     .modal-content
@@ -427,6 +427,7 @@ block content
       var ii, jj;
       var betting_array=[-1,-1,-1,-1,-1];
       var amount_array=[-1,-1,-1,-1,-1];
+      var booleanPlayerInGame = false;
 
       function sendMessageChat(event) {
         if (event.keyCode == 13) {
@@ -658,16 +659,20 @@ block content
           spinning(winning_number);
       });
 
-      socket.on('gameroom status update', function(value) {            
+      socket.on('gameroom status update', function(value) {       
           place_bets = value;
           if(place_bets == 0) {
+            if(!booleanPlayerInGame){
               startTimer();
               startplayerturn();
+              booleanPlayerInGame = true;
+            }
           } else if(place_bets == 1) {
               socket.emit('get winning number', winning_number);        
               document.getElementById('alertupdates').value = "Updating the balances...";
           } else if(place_bets == 2) {
                 checkBetting();
+                booleanPlayerInGame=false;
           }
           console.log("gameroom status update " + value);  
       });
