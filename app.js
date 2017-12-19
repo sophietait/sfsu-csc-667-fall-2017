@@ -141,7 +141,8 @@ app.io.on("connection", function(socket) {
   });
 });
 
-gameLoop();
+
+//gameLoop();
 setInterval(function () {
   gameLoop();
 }, 60000);

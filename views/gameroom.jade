@@ -440,7 +440,8 @@ block content
 
       function getBettingQuantity(){
               var quantity = document.getElementById('amountbet').value;
-              var bett = parseInt(#{balance}) - parseInt(quantity);
+              var bett = parseInt($("#balanceupdating").html()) - parseInt(quantity);
+              //var bett = parseInt(#{balance}) - parseInt(quantity);
               if(parseInt(quantity) < 0 || bett < 0){
                 quantity = 0;
                 document.getElementById('alertupdates').value = "Your amount of money is negative or not valid!";
@@ -453,6 +454,7 @@ block content
                   break;
                 }
               }
+              alert(quantity);
             }
 
             function openBettingModal(numberToBet){
@@ -492,7 +494,7 @@ block content
                       }
                     }
                   }
-
+                  //alert(betting_array[jj]);
                   switch (betting_array[jj]) {
                     case 0:
                       if(winningNumber==0){
@@ -503,6 +505,8 @@ block content
                       }
                       break;
                     case 50: //red
+                        //alert(currentMoney);
+                        //alert(amount_array[jj]);
                         if(winningNumber== 1 || winningNumber== 3 || winningNumber== 5 ||
                           winningNumber== 7 || winningNumber== 9 || winningNumber== 12 ||
                           winningNumber== 14 || winningNumber== 16 || winningNumber== 18 ||
