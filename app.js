@@ -2,7 +2,7 @@ if (process.env.NODE_ENV === 'development') {
    require('dotenv').config();
 }
 
-var express = require('express');
+/*var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -20,7 +20,7 @@ var addcredit = require('./routes/addcredit');
 var gameroom = require('./routes/gameroom');
 var rules = require('./routes/rules');
 var logout = require('./routes/logout');
-
+*/
 var place_bets = 0;
 var winning_number = -1;
 
